@@ -1,35 +1,63 @@
-// Documentação: src/App.jsx
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 
-// 1. Importamos as ferramentas do React Router
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import particlesConfig from './particles-config.js';
 
-// 2. Importamos nossos componentes
 import Navbar from './components/Navbar';
 import Inicio from './components/pages/Inicio';
 import Sobre from './components/pages/Sobre';
 import Projetos from './components/pages/Projetos';
 import Curriculo from './components/pages/Curriculo';
+import Contato from './components/pages/Contato';
 
-import './App.css'; 
+import './App.css';
 
 function App() {
+  const particlesInit = async (main) => {
+    await loadFull(main);
+  };
   return (
- 
-    <BrowserRouter>
-      <Navbar /> {/* A Navbar fica aqui para aparecer em todas as páginas */}
+    <div>
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={particlesConfig}
+      />
+      <Navbar />
       
-      {/* Usamos uma tag 'main' para o conteúdo principal por boas práticas */}
-      <main className="main-content">
-        {/* 4. O 'Routes' define a área onde o conteúdo da página será trocado */}
-        <Routes>
-          {/* 5. Cada 'Route' mapeia um caminho (URL) para um componente */}
-          <Route path="/" element={<Inicio />} />
-          <Route path="/sobre" element={<Sobre />} />
-          <Route path="/projetos" element={<Projetos />} />
-          <Route path="/curriculo" element={<Curriculo />} />
-        </Routes>
-      </main>
-    </BrowserRouter>
+      {/* Seção de início continua como está, pois já tem seu próprio estilo de 100vh */}
+      <section id="inicio">
+        <Inicio />
+      </section>
+      
+      {/* Estrutura para a seção SOBRE */}
+      <section id="sobre" className="full-page-section bg-white">
+        <div className="section-content-container">
+          <Sobre />
+        </div>
+      </section>
+      
+      {/* Estrutura para a seção PROJETOS */}
+      <section id="projetos" className="full-page-section bg-light-gray">
+        <div className="section-content-container">
+          <Projetos />
+        </div>
+      </section>
+      
+      {/* Estrutura para a seção CURRÍCULO */}
+      <section id="curriculo" className="full-page-section bg-white">
+        <div className="section-content-container">
+          <Curriculo />
+        </div>
+      </section>
+      
+      {/* Estrutura para a seção CONTATO */}
+      <section id="contato" className="full-page-section bg-light-gray">
+        <div className="section-content-container">
+          <Contato />
+        </div>
+      </section>
+    </div>
   );
 }
 

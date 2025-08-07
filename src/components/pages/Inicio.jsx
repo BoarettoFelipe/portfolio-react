@@ -1,9 +1,12 @@
+import './Inicio.css';
+
 function Inicio() {
   return (
-    <div>
-      <h2>Página Inicial</h2>
-      <p>Bem-vindo ao meu portfólio profissional!</p>
+    <div className="hero-container">
+      <h2>Felipe Boaretto</h2>
+      <p>Desenvolvedor de Software | Apaixonado por Tecnologia e Soluções Criativas</p>
     </div>
   );
 }
+
 export default Inicio;

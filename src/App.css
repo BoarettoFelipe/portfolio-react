@@ -1,3 +1,32 @@
-.main-content {
-  padding: 2rem;
+.full-page-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 2rem;
+  box-sizing: border-box;
+}
+
+
+.section-content-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto; 
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.bg-light-gray {
+  background-color: #f8f9fa; 
+}
+
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
