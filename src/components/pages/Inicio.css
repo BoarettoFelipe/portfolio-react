@@ -1,28 +1,34 @@
 .hero-container {
   height: 100vh; 
-  
-  
   display: flex;
-  flex-direction: column; 
-  align-items: center;   
-  justify-content: center; 
-  
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  
-  color: #2c3e50; 
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  background: transparent; 
+  color: var(--cor-texto-principal);
+  text-shadow: none; 
 }
 
 .hero-container h2 {
-  font-size: 3.5rem; 
+  font-size: 3.5rem;
   margin: 0;
+  font-weight: 900;
+  letter-spacing: -2px; 
+  color: var(--cor-texto-principal);
 }
 
 .hero-container p {
-  font-size: 1.5rem; 
+  font-size: 1.5rem;
   margin-top: 1rem;
+  color: var(--cor-texto-secundario);
 }
 
 .hero-container h2, .hero-container p {
     animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

@@ -14,12 +14,11 @@
   margin: 0 auto; 
 }
 
-.bg-white {
-  background-color: #ffffff;
+.bg-dark {
+  background-color: var(--cor-fundo-principal); /* Fundo PRETO */
 }
-
-.bg-light-gray {
-  background-color: #f8f9fa; 
+.bg-content {
+  background-color: var(--cor-fundo-conteudo); /* Fundo BRANCO */
 }
 
 #tsparticles {
@@ -30,3 +29,4 @@
   height: 100%;
   z-index: -1;
 }
+

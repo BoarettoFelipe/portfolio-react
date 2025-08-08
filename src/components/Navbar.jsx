@@ -2,35 +2,43 @@ import { useState, useEffect } from 'react';
 import './Navbar.css';
 
 function Navbar() {
-  const [prevScrollPos, setPrevScrollPos] = useState(0); 
-  const [visible, setVisible] = useState(true);  
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [show, setShow] = useState(true);
 
-  const handleScroll = () => {
-    const currentScrollPos = window.pageYOffset;
-
-    setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
-
-    setPrevScrollPos(currentScrollPos);
+  const controlNavbar = () => {
+    if (window.scrollY > lastScrollY && window.scrollY > 20) {
+      setShow(false);
+    } else {
+      setShow(true);
+    }
+    setLastScrollY(window.scrollY);
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
+    window.addEventListener('scroll', controlNavbar);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', controlNavbar);
     };
-  }, [prevScrollPos, visible, handleScroll]);
+  }, [lastScrollY]);
+
 
   return (
-    <nav className={`navbar ${visible ? '' : 'navbar--hidden'}`}>
-      <ul className="navbar-links">
-        <li><a href="#inicio">Início</a></li>
-        <li><a href="#sobre">Sobre Mim</a></li>
-        <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#curriculo">Meu Currículo</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
+    <div className="navbar-container"> 
+      <nav className={`navbar ${show ? 'visible' : 'hidden'}`}>
+        <span className="line line-top"></span>
+        <span className="line line-right"></span>
+        <span className="line line-bottom"></span>
+        <span className="line line-left"></span>
+        
+        <ul className="navbar-links">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#sobre">Sobre Mim</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#curriculo">Meu Currículo</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
   );
 }
 

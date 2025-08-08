@@ -1,7 +1,9 @@
+// src/particles-config.js (Configuração de Malha Interativa)
+
 const particlesConfig = {
   background: {
     color: {
-      value: "#ffffff", // Cor de fundo do canvas, mas vamos deixar transparente
+      value: "var(--cor-fundo-principal)", // Usa a cor de fundo do nosso tema
     },
   },
   fpsLimit: 60,
@@ -9,56 +11,54 @@ const particlesConfig = {
     events: {
       onHover: {
         enable: true,
-        mode: "repulse", // Afasta as partículas ao passar o mouse
+        // O modo "grab" cria as linhas que se conectam ao mouse
+        mode: "grab", 
       },
       resize: true,
     },
     modes: {
-      repulse: {
-        distance: 100,
-        duration: 0.4,
+      grab: {
+        distance: 200, // A distância que o mouse "puxa" as linhas
+        links: {
+          opacity: 1,
+        },
       },
     },
   },
   particles: {
     color: {
-      value: "#2c3e50", // Cor das partículas
+      value: "#ffffff",
     },
     links: {
-      color: "#2c3e50", // Cor das linhas que conectam as partículas
+      color: "#ffffff",
       distance: 150,
       enable: true,
-      opacity: 0.5,
+      opacity: 0.2, // Linhas bem sutis
       width: 1,
     },
     collisions: {
-      enable: true,
+      enable: false,
     },
+    // AQUI ESTÁ A MÁGICA: as partículas não se movem sozinhas
     move: {
-      direction: "none",
-      enable: true,
-      outModes: {
-        default: "bounce",
-      },
-      random: false,
-      speed: 2, // Velocidade de movimento
-      straight: false,
+      enable: false, // <-- PARTÍCULAS ESTÁTICAS
     },
+
     number: {
       density: {
         enable: true,
         area: 800,
       },
-      value: 80, // Número de partículas
+      value: 80, // Número de pontos na tela
     },
     opacity: {
-      value: 0.5,
+      value: 0.3, // Pontos bem sutis
     },
     shape: {
       type: "circle",
     },
     size: {
-      value: { min: 1, max: 5 },
+      value: { min: 1, max: 3 },
     },
   },
   detectRetina: true,

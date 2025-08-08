@@ -1,23 +1,23 @@
 .contato-container {
   max-width: 700px;
-  margin: 2rem auto; 
-  padding: 2rem;
-  background-color: #ffffff;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background-color: var(--cor-fundo-principal); 
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   animation: fadeIn 0.5s ease-in-out;
 }
 
 .contato-container h2 {
   text-align: center;
   margin-bottom: 1rem;
-  color: #2c3e50;
+  color: var(--cor-texto-principal);
 }
 
 .contato-container p {
   text-align: center;
   margin-bottom: 2rem;
-  color: #34495e;
+  color: var(--cor-texto-secundario);
 }
 
 .contato-form .form-group {
@@ -28,50 +28,43 @@
   display: block;
   margin-bottom: 0.5rem;
   font-weight: bold;
-  color: #2c3e50;
+  color: var(--cor-texto-principal);
 }
 
 .contato-form input,
 .contato-form textarea {
   width: 100%;
   padding: 0.8rem;
-  border: 1px solid #bdc3c7;
+  background-color: var(--cor-fundo-secundario); 
+  border: 1px solid #dee2e6;
   border-radius: 4px;
   font-size: 1rem;
-  box-sizing: border-box; 
+  color: var(--cor-texto-principal);
+  box-sizing: border-box;
 }
 
 .contato-form input:focus,
 .contato-form textarea:focus {
   outline: none;
-  border-color: #3498db;
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 5px rgba(18, 18, 18, 0.2);
 }
 
 .submit-button {
   width: 100%;
   padding: 1rem;
-  background-color: #3498db;
-  color: white;
+  background-color: var(--cor-destaque);
+  color: var(--cor-branco);
   border: none;
   border-radius: 4px;
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .submit-button:hover {
-  background-color: #2980b9;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  background-color: #343a40; 
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
