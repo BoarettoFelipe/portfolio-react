@@ -1,26 +1,55 @@
-// src/App.jsx (Versão Limpa)
+// src/App.jsx (Versão Corrigida sem StaticBackground)
 
-// 1. Removemos todos os imports que não são mais necessários (useState, useEffect, particles, etc.)
-import FlowingBackground from './components/FlowingBackground';
-
+import { useState, useEffect } from 'react';
+// IMPORTANTE: Adicione o import do seu FlowingBackground aqui
+import FlowingBackground from './components/FlowingBackground'; 
 import Navbar from './components/Navbar';
 import Inicio from './components/pages/Inicio';
 import Sobre from './components/pages/Sobre';
 import Projetos from './components/pages/Projetos';
 import Curriculo from './components/pages/Curriculo';
 import Contato from './components/pages/Contato';
-
 import './App.css';
 
 function App() {
-  // 2. Removemos a lógica de state e effect do tsparticles daqui.
+  const [nameStyle, setNameStyle] = useState({
+    fontSize: '3.5rem',
+    top: '50%',
+    color: 'var(--cor-texto-principal)'
+  });
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const triggerPoint = 200;
+
+      if (scrollY > triggerPoint) {
+        setNameStyle({
+          fontSize: '1.5rem',
+          top: '28px', 
+          color: 'var(--cor-destaque)'
+        });
+      } else {
+        setNameStyle({
+          fontSize: '3.5rem',
+          top: '50%',
+          color: 'var(--cor-texto-principal)'
+        });
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div>
-      {/* 3. Deixamos APENAS nosso novo componente de fundo */}
+      {/* Usando o seu componente de fundo que já existe */}
       <FlowingBackground />
-      
-      {/* 4. O componente <Particles /> foi removido */}
+
+      <h2 className="name-element" style={nameStyle}>
+        Felipe Boaretto
+      </h2>
       
       <Navbar />
       
@@ -28,7 +57,7 @@ function App() {
         <Inicio />
       </section>
       
-      {/* ATENÇÃO: Corrigi as classes das suas seções para o tema escuro que definimos */}
+      {/* O resto das seções continua igual */}
       <section id="sobre" className="full-page-section bg-content">
         <div className="section-content-container">
           <Sobre />

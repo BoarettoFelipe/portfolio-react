@@ -6,12 +6,13 @@ function Navbar() {
   const [show, setShow] = useState(true);
 
   const controlNavbar = () => {
-    if (window.scrollY > lastScrollY && window.scrollY > 20) {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > lastScrollY && currentScrollY > 20) {
       setShow(false);
     } else {
       setShow(true);
     }
-    setLastScrollY(window.scrollY);
+    setLastScrollY(currentScrollY);
   };
 
   useEffect(() => {
@@ -21,24 +22,21 @@ function Navbar() {
     };
   }, [lastScrollY]);
 
-
   return (
-    <div className="navbar-container"> 
-      <nav className={`navbar ${show ? 'visible' : 'hidden'}`}>
-        <span className="line line-top"></span>
-        <span className="line line-right"></span>
-        <span className="line line-bottom"></span>
-        <span className="line line-left"></span>
-        
-        <ul className="navbar-links">
-          <li><a href="#inicio">Início</a></li>
-          <li><a href="#sobre">Sobre Mim</a></li>
-          <li><a href="#projetos">Projetos</a></li>
-          <li><a href="#curriculo">Meu Currículo</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-      </nav>
-    </div>
+    <nav className={`navbar ${show ? 'visible' : 'hidden'}`}>
+      <span className="line line-top"></span>
+      <span className="line line-right"></span>
+      <span className="line line-bottom"></span>
+      <span className="line line-left"></span>
+      
+      <ul className="navbar-links">
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#sobre">Sobre Mim</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#curriculo">Meu Currículo</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
   );
 }
 

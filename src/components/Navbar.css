@@ -1,30 +1,24 @@
-.navbar-container {
-  position: fixed;
-  top: 0;
-  left: 0;
+.navbar {
   width: 100%;
+  max-width: 1200px;
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  transition: transform 0.5s ease-in-out;
+  background-color: var(--cor-fundo-secundario);
+  padding: 0.8rem 2.5rem;
+  border-radius: 50px;
+  box-sizing: border-box;
   z-index: 1000;
   display: flex;
-  justify-content: center;
-  pointer-events: none; 
-}
-
-.navbar {
-  background-color: var(--cor-fundo-principal);
-  /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);*/
-  padding: 0.8rem 1.5rem;
-  box-sizing: border-box;
-  /* border-radius: 50px; */
-  /* margin-top: 1rem;*/
-  pointer-events: auto; 
-  transition: transform 0.4s ease-in-out;
-  transform: translateY(0);
-  position: relative;
+  justify-content: flex-start; 
   overflow: hidden;
 }
 
+/* Classe para esconder com o scroll */
 .navbar.hidden {
-  transform: translateY(-150%);
+  transform: translate(-50%, -150%);
 }
 
 .navbar-links {
@@ -51,39 +45,37 @@
 .line {
   position: absolute;
   background-color: var(--cor-borda-animada);
-  box-shadow: 0 0 10px var(--cor-borda-animada), 0 0 20px var(--cor-borda-animada);
+  box-shadow: 0 0 10px var(--cor-borda-animada);
+  width: 0;
+  height: 0;
 }
 
-.line-top { top: 0; left: 0; width: 0; height: 0px; }
-.line-right { top: 0; right: 0; width: 0.5px; height: 0; }
-.line-bottom { bottom: 0.5px; right: 0; width: 0; height: 0.5px; }
-.line-left { bottom: 0; left: 0; width: 0.5px; height: 0; }
+.line-top { top: 0; left: 0; height: 1.5px; }
+.line-right { top: 0; right: 0; width: 1.5px; }
+.line-bottom { bottom: 0; right: 0; height: 1.5px; }
+.line-left { bottom: 0; left: 0; width: 1.5px; }
 
-@keyframes animate-top { 100% { width: 100%; } }
-@keyframes animate-right { 100% { height: 100%; } }
-@keyframes animate-bottom { 100% { width: 100%; } }
-@keyframes animate-left { 100% { height: 100%; } }
+@keyframes animate-width { 100% { width: 100%; } }
+@keyframes animate-height { 100% { height: 100%; } }
 
-/* Gatilho da animação quando o cabeçalho está visível */
+/* Gatilho da animação */
 .navbar.visible .line-top {
-  animation: animate-top 0.4s linear forwards;
+  animation: animate-width 0.4s linear forwards;
 }
 .navbar.visible .line-right {
-  animation: animate-right 0.4s linear forwards;
+  animation: animate-height 0.4s linear forwards;
   animation-delay: 0.4s;
 }
 .navbar.visible .line-bottom {
-  animation: animate-bottom 0.4s linear forwards;
+  animation: animate-width 0.4s linear forwards;
   animation-delay: 0.8s;
 }
 .navbar.visible .line-left {
-  animation: animate-left 0.4s linear forwards;
+  animation: animate-height 0.4s linear forwards;
   animation-delay: 1.2s;
 }
 
-/* Reseta a animação quando o cabeçalho está escondido */
+/* Reset da animação */
 .navbar.hidden .line {
-  width: 0;
-  height: 0;
   animation: none;
 }
