@@ -4,16 +4,26 @@
   --cor-fundo-principal: #000000;      
   --cor-fundo-secundario: #111111;     
   --cor-fundo-conteudo: #ffffff;    
-
   --cor-texto-principal: #ffffff;       
   --cor-texto-secundario: #a0a0a0;      
-  --cor-texto-inverso: #121212;      
+  --cor-texto-inverso: #121212;        
   --cor-texto-inverso-secundario: #555555; 
-
   --cor-destaque: #ffffff;            
   --cor-borda-animada: #9933ff;    
   --fonte-titulos: 'Poppins', sans-serif;
   --fonte-corpo: 'Source Sans 3', sans-serif;
+}
+
+[data-theme='gray'] {
+  --cor-fundo-principal: #dfdfdf;
+  --cor-fundo-secundario: #ffffff;
+  --cor-fundo-conteudo: #ffffff;
+  --cor-texto-principal: #2d2d2d;
+  --cor-texto-secundario: #7a7a7a;
+  --cor-texto-inverso: #2d2d2d;
+  --cor-texto-inverso-secundario: #7a7a7a;
+  --cor-destaque: #000000;
+  --cor-borda-animada: #000000;
 }
 
 body {
@@ -21,13 +31,7 @@ body {
   color: var(--cor-texto-principal); 
   margin: 0;
   font-family: var(--fonte-corpo);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  transition: background-color 0.3s ease; 
 }
 
 html {
@@ -36,5 +40,5 @@ html {
 
 h2, h3, h4, h5, h6 {
   font-family: var(--fonte-titulos);
-  font-weight: 700; /* Usamos o peso Bold (700) que importamos */
+  font-weight: 700; 
 }

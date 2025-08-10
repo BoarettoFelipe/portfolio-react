@@ -1,60 +1,56 @@
 .contato-container {
+  background-color: var(--cor-fundo-conteudo);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   max-width: 700px;
-  margin: 2rem auto;
-  padding: 2.5rem;
-  background-color: var(--cor-fundo-principal); 
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  animation: fadeIn 0.5s ease-in-out;
+  margin: 0 auto;
 }
-
 .contato-container h2 {
   text-align: center;
   margin-bottom: 1rem;
-  color: var(--cor-texto-principal);
+  color: var(--cor-texto-inverso);
 }
-
 .contato-container p {
   text-align: center;
   margin-bottom: 2rem;
-  color: var(--cor-texto-secundario);
+  color: var(--cor-texto-inverso-secundario);
 }
-
 .contato-form .form-group {
   margin-bottom: 1.5rem;
 }
-
 .contato-form label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: bold;
-  color: var(--cor-texto-principal);
+  color: var(--cor-texto-inverso);
 }
-
 .contato-form input,
 .contato-form textarea {
   width: 100%;
   padding: 0.8rem;
-  background-color: var(--cor-fundo-secundario); 
+  background-color: #f8f9fa;
   border: 1px solid #dee2e6;
   border-radius: 4px;
   font-size: 1rem;
-  color: var(--cor-texto-principal);
+  color: var(--cor-texto-inverso);
   box-sizing: border-box;
+  transition: border-color 0.3s ease;
 }
-
 .contato-form input:focus,
 .contato-form textarea:focus {
   outline: none;
   border-color: var(--cor-destaque);
-  box-shadow: 0 0 5px rgba(18, 18, 18, 0.2);
 }
-
+.contato-form input.error,
+.contato-form textarea.error {
+  border-color: #e74c3c; /* Vermelho para o erro */
+}
 .submit-button {
   width: 100%;
   padding: 1rem;
-  background-color: var(--cor-destaque);
-  color: var(--cor-branco);
+  background-color: var(--cor-texto-inverso);
+  color: var(--cor-fundo-conteudo);
   border: none;
   border-radius: 4px;
   font-size: 1.1rem;
@@ -62,9 +58,16 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .submit-button:hover {
-  background-color: #343a40; 
+  background-color: #343a40;
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.status-message {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: var(--cor-texto-inverso);
+}
+.status-message.error-text {
+  color: #e74c3c; 
 }

@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from './LanguageSwitcher';
+import ThemeSwitcher from './ThemeSwitcher';
 import './Navbar.css';
 
-function Navbar() {
+function Navbar({ changeTheme, currentTheme }) {
+  const { t } = useTranslation();
   const [lastScrollY, setLastScrollY] = useState(0);
   const [show, setShow] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const controlNavbar = () => {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY > lastScrollY && currentScrollY > 20) {
+    if (window.scrollY > lastScrollY && window.scrollY > 20) {
       setShow(false);
     } else {
       setShow(true);
     }
-    setLastScrollY(currentScrollY);
+    setLastScrollY(window.scrollY);
   };
 
   useEffect(() => {
@@ -22,21 +26,53 @@ function Navbar() {
     };
   }, [lastScrollY]);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+  
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  }
+
   return (
-    <nav className={`navbar ${show ? 'visible' : 'hidden'}`}>
-      <span className="line line-top"></span>
-      <span className="line line-right"></span>
-      <span className="line line-bottom"></span>
-      <span className="line line-left"></span>
-      
-      <ul className="navbar-links">
-        <li><a href="#inicio">Início</a></li>
-        <li><a href="#sobre">Sobre Mim</a></li>
-        <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#curriculo">Meu Currículo</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
+    <>
+      <nav className={`navbar ${show ? 'visible' : 'hidden'}`}>
+        <ul className="navbar-links">
+          <li><a href="#inicio">{t('nav_inicio')}</a></li>
+          <li><a href="#sobre">{t('nav_sobre')}</a></li>
+          <li><a href="#projetos">{t('nav_projetos')}</a></li>
+          <li><a href="#curriculo">{t('nav_curriculo')}</a></li>
+          <li><a href="#contato">{t('nav_contato')}</a></li>
+        </ul>
+
+        <h2 className="navbar-name">
+          <a href="#inicio" onClick={closeMobileMenu}>{t('hero_name')}</a>
+        </h2>
+
+        <div className="navbar-spacer">
+          <ThemeSwitcher changeTheme={changeTheme} currentTheme={currentTheme} />
+          <LanguageSwitcher />
+        </div>
+
+        <button className="hamburger-button" onClick={toggleMobileMenu}>
+          ☰
+        </button>
+      </nav>
+
+      <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+        <button className="close-button" onClick={toggleMobileMenu}>×</button>
+        <a href="#inicio" onClick={closeMobileMenu}>{t('nav_inicio')}</a>
+        <a href="#sobre" onClick={closeMobileMenu}>{t('nav_sobre')}</a>
+        <a href="#projetos" onClick={closeMobileMenu}>{t('nav_projetos')}</a>
+        <a href="#curriculo" onClick={closeMobileMenu}>{t('nav_curriculo')}</a>
+        <a href="#contato" onClick={closeMobileMenu}>{t('nav_contato')}</a>
+        
+        <div className="mobile-menu-options">
+          <ThemeSwitcher changeTheme={changeTheme} currentTheme={currentTheme} />
+          <LanguageSwitcher />
+        </div>
+      </div>
+    </>
   );
 }
 

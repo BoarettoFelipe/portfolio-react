@@ -1,42 +1,35 @@
-import { useState } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
-
+import { useTranslation } from 'react-i18next';
 import meuCurriculoPDF from '../../assets/Boaretto-Curriculo.pdf';
-
+import curriculoPreview from '../../assets/Boaretto-Curriculo.jpg';
 import './Curriculo.css';
 
-console.log("Caminho do PDF:", meuCurriculoPDF); 
-
-//pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
-pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
-
 function Curriculo() {
-  const [numPages, setNumPages] = useState(null);
-
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-  }
+  const { t } = useTranslation();
 
   return (
-    <div className="curriculo-container">
-      <h2>Meu Currículo</h2>
+    <div className="curriculo-card">
+      <h2>{t('nav_curriculo')}</h2>
+      <p>{t('resume_intro')}</p>
       
-      <a className="download-button" href={meuCurriculoPDF} download="Boaretto-Curriculo.pdf">
-        Download do Currículo
-      </a>
-
-      <div className="pdf-viewer">
-        <Document file={meuCurriculoPDF} onLoadSuccess={onDocumentLoadSuccess}>
-          {Array.from(new Array(numPages), (el, index) => (
-            <Page
-              key={`page_${index + 1}`}
-              pageNumber={index + 1}
-              renderTextLayer={false}
-              renderAnnotationLayer={false}
-            />
-          ))}
-        </Document>
+      <div className="curriculo-viewer">
+        <div className="pdf-embed-container">
+          <embed
+            src={meuCurriculoPDF}
+            type="application/pdf"
+            width="100%"
+            height="800px"
+          />
+        </div>
+        <img 
+          src={curriculoPreview} 
+          alt="Prévia do currículo" 
+          className="pdf-preview-image"
+        />
       </div>
+
+      <a className="download-button" href={meuCurriculoPDF} download="FelipeBoaretto-Curriculo.pdf">
+        {t('resume_download_button')}
+      </a>
     </div>
   );
 }

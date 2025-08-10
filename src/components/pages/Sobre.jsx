@@ -1,23 +1,19 @@
+import { useTranslation } from 'react-i18next';
 import './Sobre.css';
-
-import profilePlaceholder from '../../assets/profile-placeholder.png'; 
+import profilePlaceholder from '../../assets/profile-placeholder.png';
 
 function Sobre() {
+  const { t } = useTranslation();
+
   return (
     <div className="sobre-container">
-      {/* Coluna da Imagem */}
       <div className="sobre-imagem">
-        <img src={profilePlaceholder} alt="Felipe Boaretto" />
+        <img src={profilePlaceholder} alt={t('hero_name')} />
       </div>
-
-      {/* Coluna do Texto */}
       <div className="sobre-texto">
-        <h2>Sobre Mim</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.
-        </p>
-        
-        <h3>Minhas Habilidades</h3>
+        <h2>{t('about_title')}</h2>
+        <p>{t('about_text')}</p>
+        <h3>{t('about_skills_title')}</h3>
         <div className="skills-container">
           <span className="skill-tag">React</span>
           <span className="skill-tag">JavaScript</span>
@@ -26,7 +22,7 @@ function Sobre() {
           <span className="skill-tag">HTML</span>
           <span className="skill-tag">SQL</span>
           <span className="skill-tag">Git</span>
-          <span className="skill-tag">Metodologias Ágeis</span>
+          <span className="skill-tag">Agile Methodologies</span>
         </div>
       </div>
     </div>

@@ -1,34 +1,40 @@
+import { useTranslation } from 'react-i18next';
 import ProjectCard from '../ProjectCard';
 import './Projetos.css';
-
-const projectsData = [
-  {
-    image: 'https://via.placeholder.com/400x250/3498db/ffffff?text=Projeto+1',
-    title: 'Sistema de E-commerce',
-    description: 'Plataforma completa de e-commerce com carrinho de compras, checkout e painel administrativo para gerenciamento de produtos e pedidos.',
-    techs: ['React', 'Node.js', 'Express', 'MongoDB'],
-    repoLink: '#'
-  },
-  {
-    image: 'https://via.placeholder.com/400x250/2ecc71/ffffff?text=Projeto+2',
-    title: 'Aplicativo de Clima',
-    description: 'Um aplicativo web simples e elegante que consome uma API de clima para exibir a previsão do tempo em tempo real para qualquer cidade.',
-    techs: ['React', 'API REST', 'CSS Grid'],
-    repoLink: '#'
-  },
-  {
-    image: 'https://via.placeholder.com/400x250/e74c3c/ffffff?text=Projeto+3',
-    title: 'Blog Pessoal',
-    description: 'Um blog dinâmico com sistema de posts e comentários, construído com um CMS Headless para facilitar a criação e edição de conteúdo.',
-    techs: ['Next.js', 'Tailwind CSS', 'GraphQL'],
-    repoLink: '#'
-  }
-];
+import imgProjeto1 from '../../assets/projects/projeto1.png';
+import imgProjeto2 from '../../assets/projects/projeto2.png';
+import imgProjeto3 from '../../assets/projects/projeto3.png';
 
 function Projetos() {
+  const { t } = useTranslation();
+
+  const projectsData = [
+    {
+      image: imgProjeto1,
+      title: t('project1_title'),
+      description: t('project1_desc'),
+      techs: ['React', 'Node.js', 'Express', 'MongoDB'],
+      repoLink: '#'
+    },
+    {
+      image: imgProjeto2,
+      title: t('project2_title'),
+      description: t('project2_desc'),
+      techs: ['React', 'API REST', 'CSS Grid'],
+      repoLink: '#'
+    },
+    {
+      image: imgProjeto3,
+      title: t('project3_title'),
+      description: t('project3_desc'),
+      techs: ['Next.js', 'Tailwind CSS', 'GraphQL'],
+      repoLink: '#'
+    }
+  ];
+
   return (
-    <div>
-      <h2>Meus Projetos</h2>
+    <div className="projetos-container">
+      <h2>{t('nav_projetos')}</h2>
       <div className="projects-grid">
         {projectsData.map((project, index) => (
           <ProjectCard
