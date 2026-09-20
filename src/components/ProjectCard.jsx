@@ -1,22 +1,35 @@
+import { useTranslation } from 'react-i18next';
+import { getTechnology } from '../data/technologies';
+import { getLocalizedText } from '../utils/projects';
 import './ProjectCard.css';
 
-function ProjectCard({ image, title, description, techs, repoLink }) {
+function ProjectCard({ project }) {
+  const { t, i18n } = useTranslation();
+  const language = i18n.resolvedLanguage || i18n.language;
+  const title = getLocalizedText(project.title, language);
+
   return (
     <div className="project-card">
-      <img src={image} alt={`Screenshot do projeto ${title}`} className="project-image" />
+      {project.image && (
+        <img src={project.image} alt={t('project_image_alt', { title })} className="project-image" />
+      )}
       <div className="project-info">
         <h3>{title}</h3>
-        <p>{description}</p>
+        <p>{getLocalizedText(project.description, language)}</p>
         <div className="project-techs">
-          {techs.map((tech, index) => (
-            <span key={index} className="tech-tag">{tech}</span>
+          {project.technologies.map((id) => (
+            <span key={id} className="tech-tag">{getTechnology(id).label}</span>
           ))}
         </div>
         <div className="project-links">
-          {/* 2. Deixamos apenas um botão. Usamos a classe 'btn-primary' para dar mais destaque. */}
-          <a href={repoLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-            Ver no GitHub
+          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+            {t('project_github')}
           </a>
+          {project.demoUrl && (
+            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+              {t('project_demo')}
+            </a>
+          )}
         </div>
       </div>
     </div>

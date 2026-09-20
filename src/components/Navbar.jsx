@@ -1,3 +1,4 @@
+import { profile } from '../data/profile';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -10,16 +11,16 @@ function Navbar({ changeTheme, currentTheme }) {
   const [show, setShow] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const controlNavbar = () => {
-    if (window.scrollY > lastScrollY && window.scrollY > 20) {
-      setShow(false);
-    } else {
-      setShow(true);
-    }
-    setLastScrollY(window.scrollY);
-  };
-
   useEffect(() => {
+    const controlNavbar = () => {
+      if (window.scrollY > lastScrollY && window.scrollY > 20) {
+        setShow(false);
+      } else {
+        setShow(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
     window.addEventListener('scroll', controlNavbar);
     return () => {
       window.removeEventListener('scroll', controlNavbar);
@@ -46,7 +47,7 @@ function Navbar({ changeTheme, currentTheme }) {
         </ul>
 
         <h2 className="navbar-name">
-          <a href="#inicio" onClick={closeMobileMenu}>{t('hero_name')}</a>
+          <a href="#inicio" onClick={closeMobileMenu}>{profile.name}</a>
         </h2>
 
         <div className="navbar-spacer">

@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import meuCurriculoPDF from '../../assets/Boaretto-Curriculo.pdf';
-import curriculoPreview from '../../assets/Boaretto-Curriculo.jpg';
+import { profile } from '../../data/profile';
 import './Curriculo.css';
 
 function Curriculo() {
@@ -14,20 +13,20 @@ function Curriculo() {
       <div className="curriculo-viewer">
         <div className="pdf-embed-container">
           <embed
-            src={meuCurriculoPDF}
+            src={profile.resume.url}
             type="application/pdf"
             width="100%"
             height="800px"
           />
         </div>
         <img 
-          src={curriculoPreview} 
+          src={profile.resume.preview} 
           alt="Prévia do currículo" 
           className="pdf-preview-image"
         />
       </div>
 
-      <a className="download-button" href={meuCurriculoPDF} download="FelipeBoaretto-Curriculo.pdf">
+      <a className="download-button" href={profile.resume.url} download={profile.resume.filename}>
         {t('resume_download_button')}
       </a>
     </div>

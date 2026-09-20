@@ -36,12 +36,12 @@ function Contato() {
     emailjs
       .sendForm('service_syddtjc', 'template_aouzz4r', form.current, 'zTL5eoqQygEEHtEDB')
       .then(
-        (result) => {
+        () => {
           setStatusMessage('Mensagem enviada com sucesso!');
           form.current.reset();
           setErrors({});
         },
-        (error) => {
+        () => {
           setStatusMessage('Falha ao enviar. Tente novamente.');
         }
       );

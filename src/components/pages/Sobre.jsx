@@ -1,3 +1,4 @@
+import { profile } from '../../data/profile';
 import { useTranslation } from 'react-i18next';
 import './Sobre.css';
 import profilePlaceholder from '../../assets/profile-placeholder.png';
@@ -8,7 +9,7 @@ function Sobre() {
   return (
     <div className="sobre-container">
       <div className="sobre-imagem">
-        <img src={profilePlaceholder} alt={t('hero_name')} />
+        <img src={profilePlaceholder} alt={profile.name} />
       </div>
       <div className="sobre-texto">
         <h2>{t('about_title')}</h2>
