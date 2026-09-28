@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import './FlowingBackground.css';
 
 const FlowingBackground = () => {
@@ -8,10 +8,11 @@ const FlowingBackground = () => {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let animationFrameId;
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = canvas.clientWidth;
+      canvas.height = canvas.clientHeight;
     };
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
@@ -24,15 +25,15 @@ const FlowingBackground = () => {
     window.addEventListener('mousemove', handleMouseMove);
 
     const particlesArray = [];
-    const numberOfParticles = 100;
+    const numberOfParticles = 55;
 
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = 0;
-        this.speedX = Math.random() * 0.8 - 0.4;
-        this.speedY = Math.random() * 0.8 - 0.4;
+        this.speedX = Math.random() * 0.3 - 0.15;
+        this.speedY = Math.random() * 0.3 - 0.15;
       }
       update() {
         this.x += this.speedX;
@@ -59,12 +60,12 @@ const FlowingBackground = () => {
 
     const connect = () => {
       for (let a = 0; a < particlesArray.length; a++) {
-        for (let b = a; b < particlesArray.length; b++) {
+        for (let b = a + 1; b < particlesArray.length; b++) {
           const dx = particlesArray[a].x - particlesArray[b].x;
           const dy = particlesArray[a].y - particlesArray[b].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           if (distance < 120) {
-            ctx.strokeStyle = `hsla(${distance * 2 + 100}, 100%, 70%, ${1 - distance / 120})`;
+            ctx.strokeStyle = `rgba(142, 217, 196, ${1 - distance / 120})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -76,22 +77,30 @@ const FlowingBackground = () => {
     };
 
     const animate = () => {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       particlesArray.forEach(particle => particle.update());
       connect();
       animationFrameId = requestAnimationFrame(animate);
     };
-    animate();
+    const syncMotion = () => {
+      cancelAnimationFrame(animationFrameId);
+      if (!motion.matches && !document.hidden) animate();
+      else ctx.clearRect(0, 0, canvas.width, canvas.height);
+    };
+    syncMotion();
+    motion.addEventListener('change', syncMotion);
+    document.addEventListener('visibilitychange', syncMotion);
 
     return () => {
+      motion.removeEventListener('change', syncMotion);
+      document.removeEventListener('visibilitychange', syncMotion);
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="flowing-background-canvas" />;
+  return <canvas aria-hidden="true" ref={canvasRef} className="flowing-background-canvas" />;
 };
 
 export default FlowingBackground;

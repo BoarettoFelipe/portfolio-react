@@ -1,4 +1,4 @@
-import { getTechnology } from '../data/technologies.js';
+import { getTechnology, technologyGroups } from '../data/technologies.js';
 
 // Aceita pt-BR/en-US, com fallback para português.
 export function getLocalizedText(text, language = 'pt') {
@@ -6,14 +6,26 @@ export function getLocalizedText(text, language = 'pt') {
   return text?.[locale] || text?.pt || text?.en || '';
 }
 
-// A interface futura pode acrescentar "Todos" via i18n, com valor null.
+// Deriva somente as tecnologias presentes no catálogo, sem duplicatas.
 export function getProjectTechnologies(projects) {
   const ids = new Set(projects.flatMap((project) => project.technologies));
   return Array.from(ids, getTechnology).sort((a, b) => a.label.localeCompare(b.label));
 }
 
-export function filterProjectsByTechnology(projects, technologyId = null) {
-  return technologyId === null
+// Aceita múltiplos IDs (OR), preservando chamadas legadas com um ID ou null.
+export function filterProjectsByTechnology(projects, technologyIds = []) {
+  const selected = technologyIds === null
+    ? []
+    : Array.isArray(technologyIds) ? technologyIds : [technologyIds];
+  return selected.length === 0
     ? projects
-    : projects.filter((project) => project.technologies.includes(technologyId));
+    : projects.filter((project) => project.technologies.some((id) => selected.includes(id)));
+}
+
+export function getProjectTechnologyGroups(projects) {
+  const used = getProjectTechnologies(projects);
+  return technologyGroups.map((group) => ({
+    ...group,
+    technologies: used.filter((technology) => technology.group === group.id),
+  })).filter((group) => group.technologies.length > 0);
 }

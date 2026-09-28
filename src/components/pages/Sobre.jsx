@@ -9,7 +9,7 @@ function Sobre() {
   return (
     <div className="sobre-container">
       <div className="sobre-imagem">
-        <img src={profilePlaceholder} alt={profile.name} />
+        <img loading="lazy" src={profilePlaceholder} alt={profile.name} />
       </div>
       <div className="sobre-texto">
         <h2>{t('about_title')}</h2>

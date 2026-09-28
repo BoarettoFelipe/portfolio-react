@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import './LanguageSwitcher.css';
 
 const LanguageSwitcher = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const triggerRef = useRef(null);
+  const menuId = useId();
 
   const languages = {
     pt: 'PT',
@@ -15,6 +17,7 @@ const LanguageSwitcher = () => {
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     setIsDropdownOpen(false);
+    triggerRef.current?.focus();
   };
 
   useEffect(() => {
@@ -30,24 +33,30 @@ const LanguageSwitcher = () => {
   }, []);
 
   return (
-    <div className="language-switcher" ref={dropdownRef}>
-      <button 
-        className="dropdown-button"
+    <div className="language-switcher" ref={dropdownRef} onKeyDown={(event) => {
+      if (event.key === 'Escape' && isDropdownOpen) {
+        event.preventDefault();
+        event.stopPropagation();
+        setIsDropdownOpen(false);
+        triggerRef.current?.focus();
+      }
+    }}>
+      <button
+        type="button" ref={triggerRef} aria-expanded={isDropdownOpen} aria-controls={menuId} aria-label={t('language_label')} className="dropdown-button"
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         {languages[i18n.language]}
-        {/* Adicionamos a seta aqui, com uma classe que muda quando o dropdown está aberto */}
         <span className={`arrow-icon ${isDropdownOpen ? 'open' : ''}`}></span>
       </button>
 
       {isDropdownOpen && (
-        <div className="dropdown-menu">
+        <div id={menuId} className="dropdown-menu">
           {Object.keys(languages).map((lng) => {
             if (lng !== i18n.language) {
               return (
-                <button 
-                  key={lng} 
-                  className="dropdown-item" 
+                <button
+                  type="button" key={lng}
+                  className="dropdown-item"
                   onClick={() => changeLanguage(lng)}
                 >
                   {languages[lng]}

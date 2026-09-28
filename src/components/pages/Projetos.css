@@ -1,33 +1,10 @@
-/* Container principal que vira o "card gigante" */
-.projetos-container {
-  background-color: var(--cor-fundo-conteudo);
-  border-radius: 20px;
-  padding: 3rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-/* Ajuste de cor do título para o fundo branco */
-.projetos-container h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--cor-texto-inverso);
-    margin-bottom: 2rem;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
-  gap: 2rem;
-}
-
-/* Media Query para ajustar o padding em telas menores */
-@media (max-width: 768px) {
-  .projetos-container {
-    padding: 2rem;
-  }
-}
-.projects-empty {
-  text-align: center;
-  color: var(--cor-texto-inverso-secundario);
-  line-height: 1.6;
-}
+.projetos-container { min-width: 0; }
+.projetos-container > h2 { text-align: center; }
+.projects-intro { color: var(--text-secondary); text-align: center; max-width: 55ch; margin: 0 auto 1.5rem; }
+.projects-toolbar { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 0.75rem; margin-bottom: 2rem; }
+.projects-toolbar .project-filter { background: var(--surface); }
+.projects-toolbar .project-filter:hover { background: var(--hover); }
+.projects-toolbar .project-filter[aria-pressed='true'] { background: var(--accent); }
+.projects-mode-button { color: var(--accent); }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr)); gap: 1.5rem; grid-auto-rows: 1fr; }
+.projects-empty, .projects-result-count { color: var(--text-secondary); text-align: center; }

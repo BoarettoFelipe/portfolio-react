@@ -6,87 +6,75 @@ import './Contato.css';
 function Contato() {
   const { t } = useTranslation();
   const form = useRef();
-  const [statusMessage, setStatusMessage] = useState('');
+  const [status, setStatus] = useState('idle');
   const [errors, setErrors] = useState({});
+  const sending = useRef(false);
 
-  const validateForm = () => {
+  const sendEmail = async (event) => {
+    event.preventDefault();
+    if (sending.current) return;
     const currentErrors = {};
-    if (!form.current.from_name.value) {
-      currentErrors.from_name = true;
+    for (const field of ['from_name', 'reply_to', 'message']) {
+      if (!form.current.elements[field].value.trim()) currentErrors[field] = 'contact_field_required';
     }
-    if (!form.current.reply_to.value) {
-      currentErrors.reply_to = true;
-    }
-    if (!form.current.message.value) {
-      currentErrors.message = true;
-    }
+    if (!currentErrors.reply_to && !form.current.reply_to.validity.valid) currentErrors.reply_to = 'contact_email_invalid';
     setErrors(currentErrors);
-    return Object.keys(currentErrors).length === 0;
-  };
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-    if (!validateForm()) {
-      setStatusMessage(t('contact_error_required'));
+    if (Object.keys(currentErrors).length) {
+      setStatus('invalid');
+      form.current.elements[Object.keys(currentErrors)[0]].focus();
       return;
     }
-    
-    setStatusMessage('Enviando...');
-
-    emailjs
-      .sendForm('service_syddtjc', 'template_aouzz4r', form.current, 'zTL5eoqQygEEHtEDB')
-      .then(
-        () => {
-          setStatusMessage('Mensagem enviada com sucesso!');
-          form.current.reset();
-          setErrors({});
-        },
-        () => {
-          setStatusMessage('Falha ao enviar. Tente novamente.');
-        }
-      );
+    sending.current = true;
+    setStatus('sending');
+    try {
+      await emailjs.sendForm('service_syddtjc', 'template_aouzz4r', form.current, 'zTL5eoqQygEEHtEDB');
+      form.current.reset();
+      setErrors({});
+      setStatus('success');
+    } catch {
+      setStatus('failure');
+    } finally {
+      sending.current = false;
+    }
   };
+
+  const fieldProps = (name) => ({
+    name,
+    required: true,
+    readOnly: status === 'sending',
+    className: errors[name] ? 'error' : '',
+    'aria-invalid': Boolean(errors[name]),
+    'aria-describedby': errors[name] ? `${name}-error` : undefined,
+  });
+  const errorFor = (name) => errors[name] && <p className="field-error" id={`${name}-error`}>{t(errors[name])}</p>;
+  const statusKey = { invalid: 'contact_error_fields', sending: 'contact_sending', success: 'contact_success', failure: 'contact_failure' }[status];
 
   return (
     <div className="contato-container">
-      <h2>{t('contact_title')}</h2>
-      <p>{t('contact_intro')}</p>
-      <form ref={form} onSubmit={sendEmail} className="contato-form" noValidate>
+      <div className="contato-intro">
+        <h2>{t('contact_title')}</h2>
+        <p>{t('contact_intro')}</p>
+      </div>
+      <form ref={form} onSubmit={sendEmail} className="contato-form" noValidate aria-busy={status === 'sending'}>
         <div className="form-group">
           <label htmlFor="name">{t('contact_name')}</label>
-          <input 
-            type="text" 
-            id="name" 
-            name="from_name" 
-            className={errors.from_name ? 'error' : ''} 
-            required 
-          />
+          <input type="text" id="name" autoComplete="name" {...fieldProps('from_name')} />
+          {errorFor('from_name')}
         </div>
         <div className="form-group">
           <label htmlFor="email">{t('contact_email')}</label>
-          <input 
-            type="email" 
-            id="email" 
-            name="reply_to" 
-            className={errors.reply_to ? 'error' : ''} 
-            required 
-          />
+          <input type="email" id="email" autoComplete="email" {...fieldProps('reply_to')} />
+          {errorFor('reply_to')}
         </div>
         <div className="form-group">
           <label htmlFor="message">{t('contact_message')}</label>
-          <textarea 
-            id="message" 
-            name="message" 
-            rows="6" 
-            className={errors.message ? 'error' : ''} 
-            required
-          ></textarea>
+          <textarea id="message" rows="5" {...fieldProps('message')} />
+          {errorFor('message')}
         </div>
-        <button type="submit" className="submit-button">{t('contact_send_button')}</button>
-        {statusMessage && <p className={`status-message ${Object.keys(errors).length > 0 ? 'error-text' : ''}`}>{statusMessage}</p>}
+        <button type="submit" className="btn btn-primary submit-button" disabled={status === 'sending'}>{t(status === 'sending' ? 'contact_sending' : 'contact_send_button')}</button>
+        <p role="status" className={`status-message ${status === 'failure' || status === 'invalid' ? 'error-text' : status === 'success' ? 'success-text' : ''}`}>{statusKey ? t(statusKey) : ''}</p>
       </form>
     </div>
   );
 }
-
 export default Contato;
