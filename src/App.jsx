@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import FlowingBackground from './components/FlowingBackground';
 import Navbar from './components/Navbar';
 import Inicio from './components/pages/Inicio';
-import Sobre from './components/pages/Sobre';
+import Perfil from './components/pages/Perfil';
+import Experiencia from './components/pages/Experiencia';
 import Projetos from './components/pages/Projetos';
-import Curriculo from './components/pages/Curriculo';
 import Contato from './components/pages/Contato';
 import { useTranslation } from 'react-i18next';
 import './App.css';
@@ -57,19 +57,19 @@ function App() {
           <Inicio nameRef={heroName} nameInHeader={nameInHeader} />
         </section>
 
-        <section id="sobre" tabIndex={-1} className="full-page-section">
+        <section id="perfil" tabIndex={-1} className="full-page-section">
           <div className="section-content-container">
-            <Sobre />
+            <Perfil />
+          </div>
+        </section>
+        <section id="experiencia" tabIndex={-1} className="full-page-section" aria-labelledby="experience-title">
+          <div className="section-content-container">
+            <Experiencia />
           </div>
         </section>
         <section id="projetos" tabIndex={-1} className="full-page-section">
           <div className="section-content-container">
             <Projetos />
-          </div>
-        </section>
-        <section id="curriculo" tabIndex={-1} className="full-page-section">
-          <div className="section-content-container">
-            <Curriculo />
           </div>
         </section>
         <section id="contato" tabIndex={-1} className="full-page-section">

@@ -1,9 +1,0 @@
-.sobre-container { display: grid; grid-template-columns: minmax(180px, 0.75fr) minmax(0, 1.5fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; max-width: 980px; margin-inline: auto; }
-.sobre-imagem { max-width: 280px; width: 100%; margin-inline: auto; }
-.sobre-imagem img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-lg); filter: saturate(0.85); }
-.sobre-texto p { max-width: 65ch; color: var(--text-secondary); }
-.sobre-texto h3 { margin-top: 2rem; font-size: 0.9rem; color: var(--text-muted); }
-.skills-container { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.45rem 1.5rem; }
-.skill-tag { color: var(--text-secondary); font-size: 0.95rem; overflow-wrap: anywhere; padding-left: 0.8rem; position: relative; }
-.skill-tag::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
-@media (max-width: 699px) { .sobre-container { grid-template-columns: 1fr; } .sobre-imagem { width: 180px; margin-left: 0; } }

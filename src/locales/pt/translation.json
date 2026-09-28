@@ -1,14 +1,7 @@
 {
-  "nav_inicio": "Início",
-  "nav_sobre": "Sobre Mim",
   "nav_projetos": "Projetos",
-  "nav_curriculo": "Currículo",
   "nav_contato": "Contato",
-  "hero_subtitle": "Desenvolvedor de Software | Apaixonado por Tecnologia e Soluções Criativas",
-  "about_title": "Sobre Mim",
-  "about_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.",
-  "about_skills_title": "Minhas Habilidades",
-  "resume_intro": "Faça o download ou visualize meu currículo abaixo.",
+  "hero_subtitle": "Estudante de Ciência da Computação | Desenvolvimento de Software, Automação, Dados e Cloud Computing",
   "resume_download_button": "Baixar Currículo",
   "contact_title": "Entre em Contato",
   "contact_intro": "Sinta-se à vontade para me enviar uma mensagem através do formulário abaixo ou conectar-se comigo em outras plataformas.",
@@ -56,8 +49,6 @@
   "projects_group_languages": "Linguagens",
   "skip_content": "Ir para o conteúdo",
   "hero_projects": "Ver projetos",
-  "resume_open": "Abrir PDF",
-  "resume_preview": "Prévia do currículo de Felipe Boaretto",
   "menu_open": "Abrir menu",
   "menu_close": "Fechar menu",
   "menu_title": "Navegação",
@@ -67,5 +58,21 @@
   "contact_failure": "Não foi possível enviar. Tente novamente.",
   "contact_field_required": "Preencha este campo.",
   "contact_email_invalid": "Informe um email válido.",
-  "contact_error_fields": "Confira os campos indicados abaixo."
+  "contact_error_fields": "Confira os campos indicados abaixo.",
+  "nav_perfil": "Perfil",
+  "nav_experiencia": "Experiência",
+  "profile_title": "Perfil",
+  "profile_skills_title": "Competências técnicas",
+  "experience_title": "Experiência Profissional",
+  "profile_paragraphs": [
+    "Sou estudante de Ciência da Computação na PUCPR, com experiência prática em desenvolvimento de software, automação de processos, dados e transformação digital.",
+    "Durante dois anos no programa Next Generation da FORVIA, atuei em diferentes áreas do Global Business Services (GBS), desenvolvendo aplicações, automações e soluções voltadas à eficiência operacional e ao suporte às áreas de negócio.",
+    "Tenho interesse em engenharia de software, automação, dados e cloud computing, especialmente na construção de soluções que conectem tecnologia a problemas reais de negócio."
+  ],
+  "skills_languages": "Linguagens",
+  "skills_development": "Desenvolvimento",
+  "skills_data": "Dados",
+  "skills_cloud": "Cloud & DevOps",
+  "skills_automation": "Automação & Ferramentas",
+  "experience_rotations": "Rotações semestrais"
 }
