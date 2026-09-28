@@ -1,0 +1,56 @@
+.project-carousel { min-width: 0; }
+.project-carousel-stage { position: relative; padding-inline: 36px; }
+.project-carousel-window {
+  display: grid;
+  grid-template-columns: repeat(var(--visible-projects), minmax(0, 1fr));
+  gap: 1.25rem;
+  touch-action: pan-y;
+}
+.project-carousel-slide { grid-row: 1; min-width: 0; display: flex; }
+.project-carousel-slide[data-visible='false'] { visibility: hidden; pointer-events: none; }
+.project-carousel-slide > .project-card { width: 100%; }
+.project-carousel-window[data-phase='out'] .project-carousel-slide[data-visible='true'] { animation: carousel-out 150ms ease-in both; }
+.project-carousel-window[data-phase='in'] .project-carousel-slide[data-visible='true'] { animation: carousel-in 170ms ease-out both; }
+@keyframes carousel-out {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(calc(-18px * var(--slide-direction))); opacity: 0; }
+}
+@keyframes carousel-in {
+  from { transform: translateX(calc(18px * var(--slide-direction))); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-carousel-window .project-carousel-slide { animation: none !important; }
+}
+.project-carousel-arrow, .project-carousel-play, .project-carousel-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+.project-carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 2rem; color: var(--text-secondary); }
+.project-carousel-arrow.previous { left: -10px; }
+.project-carousel-arrow.next { right: -10px; }
+.project-carousel-positions, .project-carousel-playback { display: flex; flex-wrap: wrap; justify-content: center; }
+.project-carousel-positions { margin-top: 1rem; }
+.project-carousel-dot { font-size: 0; }
+.project-carousel-dot::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); }
+.project-carousel-dot[aria-pressed='true']::before { width: 18px; border-radius: 4px; background: var(--accent); }
+.project-carousel-arrow:hover, .project-carousel-play:hover { background: var(--hover); }
+.project-carousel button:disabled { cursor: default; opacity: 0.4; }
+.project-carousel button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.project-carousel-status { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.project-carousel-window .project-card:hover { transform: none; }
+@media (max-width: 699px) {
+  .project-carousel-stage { padding-inline: 0; }
+  .project-carousel-arrow { top: 70px; background: var(--surface-raised); box-shadow: 0 1px 6px var(--border); z-index: 1; }
+  .project-carousel-arrow.previous { left: -10px; }
+  .project-carousel-arrow.next { right: -10px; }
+}

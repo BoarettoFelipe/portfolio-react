@@ -1,73 +1,16 @@
-.contato-container {
-  background-color: var(--cor-fundo-conteudo);
-  border-radius: 20px;
-  padding: 3rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  max-width: 700px;
-  margin: 0 auto;
-}
-.contato-container h2 {
-  text-align: center;
-  margin-bottom: 1rem;
-  color: var(--cor-texto-inverso);
-}
-.contato-container p {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: var(--cor-texto-inverso-secundario);
-}
-.contato-form .form-group {
-  margin-bottom: 1.5rem;
-}
-.contato-form label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  color: var(--cor-texto-inverso);
-}
-.contato-form input,
-.contato-form textarea {
-  width: 100%;
-  padding: 0.8rem;
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  border-radius: 4px;
-  font-size: 1rem;
-  color: var(--cor-texto-inverso);
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
-}
-.contato-form input:focus,
-.contato-form textarea:focus {
-  outline: none;
-  border-color: var(--cor-destaque);
-}
-.contato-form input.error,
-.contato-form textarea.error {
-  border-color: #e74c3c; /* Vermelho para o erro */
-}
-.submit-button {
-  width: 100%;
-  padding: 1rem;
-  background-color: var(--cor-texto-inverso);
-  color: var(--cor-fundo-conteudo);
-  border: none;
-  border-radius: 4px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.submit-button:hover {
-  background-color: #343a40;
-  transform: translateY(-2px);
-}
-.status-message {
-  text-align: center;
-  margin-top: 1rem;
-  font-weight: bold;
-  color: var(--cor-texto-inverso);
-}
-.status-message.error-text {
-  color: #e74c3c; 
-}
+.contato-container { max-width: 960px; margin-inline: auto; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: start; gap: clamp(2rem, 5vw, 4rem); }
+.contato-intro p { max-width: 38ch; color: var(--text-secondary); }
+.contato-form { min-width: 0; }
+.form-group { margin-bottom: 1.25rem; }
+.contato-form label { display: block; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
+.contato-form input, .contato-form textarea { display: block; width: 100%; min-height: 48px; padding: 0.75rem 0.9rem; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius-sm); transition: border-color 160ms ease; }
+.contato-form textarea { resize: vertical; min-height: 150px; }
+.contato-form input:hover, .contato-form textarea:hover { border-color: var(--text-muted); }
+.contato-form input:focus, .contato-form textarea:focus { border-color: var(--focus); outline: 2px solid var(--focus); outline-offset: 2px; }
+.contato-form .error { border-color: var(--error); }
+.field-error { color: var(--error); font-size: 0.875rem; margin: 0.35rem 0 0; }
+.submit-button { min-width: 170px; }
+.status-message { margin: 1rem 0 0; color: var(--text-secondary); }
+.status-message.error-text { color: var(--error); }
+.status-message.success-text { color: var(--success); }
+@media (max-width: 699px) { .contato-container { grid-template-columns: 1fr; } .submit-button { width: 100%; } }
