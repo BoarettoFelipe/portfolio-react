@@ -7,6 +7,7 @@ import Experiencia from './components/pages/Experiencia';
 import Projetos from './components/pages/Projetos';
 import Certificacoes from './components/pages/Certificacoes';
 import Contato from './components/pages/Contato';
+import Footer from './components/Footer';
 import { useTranslation } from 'react-i18next';
 import './App.css';
 
@@ -84,6 +85,7 @@ function App() {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }
