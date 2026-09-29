@@ -1,6 +1,8 @@
 import { useRef, useEffect } from 'react';
 import './FlowingBackground.css';
 
+const CONNECTION_RGB = '164, 220, 205';
+
 const FlowingBackground = () => {
   const canvasRef = useRef(null);
   useEffect(() => {
@@ -65,7 +67,7 @@ const FlowingBackground = () => {
           const dy = particlesArray[a].y - particlesArray[b].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           if (distance < 120) {
-            ctx.strokeStyle = `rgba(142, 217, 196, ${1 - distance / 120})`;
+            ctx.strokeStyle = `rgba(${CONNECTION_RGB}, ${1 - distance / 120})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particlesArray[a].x, particlesArray[a].y);

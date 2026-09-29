@@ -8,6 +8,7 @@ import Projetos from './components/pages/Projetos';
 import Certificacoes from './components/pages/Certificacoes';
 import Contato from './components/pages/Contato';
 import Footer from './components/Footer';
+import Reveal from './components/Reveal';
 import { useTranslation } from 'react-i18next';
 import './App.css';
 
@@ -22,9 +23,9 @@ function App() {
     let observer;
     const observeName = () => {
       observer?.disconnect();
-      const boundary = header.current.offsetHeight;
+      const boundary = Math.max(0, header.current.offsetHeight - 50);
       observer = new IntersectionObserver(([entry]) => {
-        setNameInHeader(entry.boundingClientRect.top < boundary);
+        setNameInHeader(entry.boundingClientRect.bottom < boundary);
       }, { rootMargin: `-${boundary}px 0px 0px 0px`, threshold: [0, 1] });
       observer.observe(heroName.current);
     };
@@ -60,32 +61,32 @@ function App() {
         </section>
 
         <section id="perfil" tabIndex={-1} className="full-page-section">
-          <div className="section-content-container">
+          <Reveal className="section-content-container" stagger>
             <Perfil />
-          </div>
+          </Reveal>
         </section>
         <section id="experiencia" tabIndex={-1} className="full-page-section" aria-labelledby="experience-title">
-          <div className="section-content-container">
+          <Reveal className="section-content-container" stagger>
             <Experiencia />
-          </div>
+          </Reveal>
         </section>
         <section id="projetos" tabIndex={-1} className="full-page-section">
-          <div className="section-content-container">
+          <Reveal className="section-content-container" stagger>
             <Projetos />
-          </div>
+          </Reveal>
         </section>
         <section id="certificacoes" tabIndex={-1} className="full-page-section">
-          <div className="section-content-container">
+          <Reveal className="section-content-container" stagger>
             <Certificacoes />
-          </div>
+          </Reveal>
         </section>
         <section id="contato" tabIndex={-1} className="full-page-section">
-          <div className="section-content-container">
+          <Reveal className="section-content-container" stagger>
             <Contato />
-          </div>
+          </Reveal>
         </section>
       </main>
-      <Footer />
+      <Reveal><Footer /></Reveal>
     </>
   );
 }

@@ -1,3 +1,15 @@
-/* Shared switcher controls are defined in LanguageSwitcher.css. */
-.theme-dropdown-menu { min-width: 155px; }
-.mobile-menu .theme-dropdown-menu { left: 0; right: auto; }
+.theme-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.theme-button:hover { background: var(--hover); color: var(--text); }
+.theme-button svg { width: 20px; height: 20px; }
