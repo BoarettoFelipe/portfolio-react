@@ -114,21 +114,23 @@ function ProjectCarousel({ projects, playing, onPlayingChange }) {
       </div>
         <button type="button" className="project-carousel-arrow next" disabled={!canRotate} aria-label={t('projects_next')} onClick={() => navigate(index + 1)}><span aria-hidden="true">›</span></button>
       </div>
-      {canRotate && (
-        <div className="project-carousel-positions" role="group" aria-label={t('projects_carousel')}>
-          {projects.map((project, position) => (
-            <button key={project.id} type="button" className="project-carousel-dot" aria-pressed={position === index} aria-label={t('projects_position', { position: position + 1, total: count })} onClick={() => navigate(position)}>
-              <span aria-hidden="true">{position === index ? '●' : '○'}</span>
-            </button>
-          ))}
+      <div className="project-carousel-controls">
+        {canRotate && (
+          <div className="project-carousel-positions" role="group" aria-label={t('projects_carousel')}>
+            {projects.map((project, position) => (
+              <button key={project.id} type="button" className="project-carousel-dot" aria-pressed={position === index} aria-label={t('projects_position', { position: position + 1, total: count })} onClick={() => navigate(position)}>
+                <span aria-hidden="true">{position === index ? '●' : '○'}</span>
+              </button>
+            ))}
+          </div>
+        )}
+        <div className="project-carousel-playback">
+          <button type="button" className="project-carousel-play" disabled={!canRotate || reducedMotion} aria-label={t(playing && !reducedMotion ? 'projects_pause_label' : 'projects_play_label')} onClick={() => onPlayingChange(!playing)}>
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              {playing && !reducedMotion ? <path d="M4 3h3v10H4zM9 3h3v10H9z" /> : <path d="M4 2l10 6-10 6z" />}
+            </svg>
+          </button>
         </div>
-      )}
-      <div className="project-carousel-playback">
-        <button type="button" className="project-carousel-play" disabled={!canRotate || reducedMotion} aria-label={t(playing && !reducedMotion ? 'projects_pause_label' : 'projects_play_label')} onClick={() => onPlayingChange(!playing)}>
-          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-            {playing && !reducedMotion ? <path d="M4 3h3v10H4zM9 3h3v10H9z" /> : <path d="M4 2l10 6-10 6z" />}
-          </svg>
-        </button>
       </div>
       <p className="project-carousel-status" aria-live={playing && !reducedMotion ? 'off' : 'polite'}>{t('projects_position_status', { position: index + 1, total: count })}</p>
       {reducedMotion && <p className="project-carousel-status">{t('projects_reduced_motion')}</p>}
