@@ -2,7 +2,7 @@ import { profile } from '../../data/profile';
 import { getTechnology } from '../../data/technologies';
 import { useTranslation } from 'react-i18next';
 import './Perfil.css';
-import profilePlaceholder from '../../assets/profile-placeholder.png';
+import profilePhoto from '../../assets/profile/felipe-boaretto.jpg';
 
 function Perfil() {
   const { t } = useTranslation();
@@ -10,7 +10,7 @@ function Perfil() {
   return (
     <div className="perfil-container">
       <div className="perfil-imagem">
-        <img loading="lazy" src={profilePlaceholder} alt={profile.name} />
+        <img loading="lazy" src={profilePhoto} alt={t('profile_photo_alt')} />
       </div>
       <div className="perfil-texto">
         <h2>{t('profile_title')}</h2>

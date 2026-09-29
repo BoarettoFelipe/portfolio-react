@@ -1,4 +1,5 @@
-import resumeUrl from '../assets/Boaretto-Curriculo.pdf';
+import resumePtUrl from '../assets/resume/Felipe Boaretto.pdf';
+import resumeEnUrl from '../assets/resume/Felipe Boaretto EN.pdf';
 
 export const profile = {
   name: 'Felipe Boaretto',
@@ -13,5 +14,10 @@ export const profile = {
     { id: 'cloud', labelKey: 'skills_cloud', technologies: ['aws', 'docker', 'terraform', 'github-actions'] },
     { id: 'automation', labelKey: 'skills_automation', technologies: ['power-apps', 'power-automate', 'excel', 'sap'] },
   ],
-  resume: { url: resumeUrl, filename: 'FelipeBoaretto-Curriculo.pdf' },
+  resume: {
+    pt: { url: resumePtUrl, filename: 'Felipe Boaretto.pdf' },
+    en: { url: resumeEnUrl, filename: 'Felipe Boaretto EN.pdf' },
+  },
 };
+
+export const getResume = (language) => profile.resume[language?.startsWith('en') ? 'en' : 'pt'];

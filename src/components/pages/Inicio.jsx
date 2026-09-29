@@ -1,9 +1,10 @@
-import { profile } from '../../data/profile';
+import { getResume, profile } from '../../data/profile';
 import { useTranslation } from 'react-i18next';
 import './Inicio.css';
 
 function Inicio({ nameRef, nameInHeader }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const resume = getResume(i18n.resolvedLanguage || i18n.language);
 
   return (
     <div className="hero-container">
@@ -12,7 +13,7 @@ function Inicio({ nameRef, nameInHeader }) {
         <p>{t('hero_subtitle')}</p>
         <div className="hero-actions">
           <a className="btn btn-primary" href="#projetos">{t('hero_projects')} <span aria-hidden="true">↗</span></a>
-          <a className="btn btn-secondary" href={profile.resume.url} download={profile.resume.filename}>{t('resume_download_button')}</a>
+          <a className="btn btn-secondary" href={resume.url} download={resume.filename}>{t('resume_download_button')}</a>
         </div>
         <div className="hero-links">
           {profile.linkedin && (

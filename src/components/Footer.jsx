@@ -1,11 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import { profile } from '../data/profile';
+import { getResume, profile } from '../data/profile';
 import './Footer.css';
 
 const sections = ['perfil', 'experiencia', 'projetos', 'certificacoes', 'contato'];
 
 function Footer() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const resume = getResume(i18n.resolvedLanguage || i18n.language);
 
   return (
     <footer className="site-footer">
@@ -31,7 +32,7 @@ function Footer() {
               <li><a href={profile.linkedin.url} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
               <li><a href={profile.github.url} target="_blank" rel="noopener noreferrer">GitHub</a></li>
               <li><a href={`mailto:${profile.email}`}>{t('contact_email')}</a></li>
-              <li><a href={profile.resume.url} download={profile.resume.filename}>{t('resume_download_button')}</a></li>
+              <li><a href={resume.url} download={resume.filename}>{t('resume_download_button')}</a></li>
             </ul>
           </div>
         </div>

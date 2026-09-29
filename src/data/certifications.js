@@ -1,3 +1,8 @@
+import awsBadge from '../assets/certifications/AWS_Academy_Graduate/aws-academy-graduate-cloud-foundations-training-bad (1).png';
+import awsCertificate from '../assets/certifications/AWS_Academy_Graduate/AWS_Academy_Graduate___Cloud_Foundations___Training_Badge_Badge20260530-31-3w3gqa.pdf';
+import talkenCertificate from '../assets/certifications/Talken/Talken.pdf';
+import sprottShawCertificate from '../assets/certifications/Sprott Shaw/Sprott Shaw.pdf';
+
 // Textos específicos das credenciais ficam junto dos dados; a interface usa i18n.
 export const certifications = [
   {
@@ -13,7 +18,9 @@ export const certifications = [
       en: 'Training in cloud computing fundamentals through AWS Academy, covering core AWS concepts, cloud services, security, architecture and infrastructure.',
     },
     details: { pt: '20 horas', en: '20 hours' },
+    image: awsBadge,
     credentialUrl: 'https://www.credly.com/go/XW2ibzCE',
+    certificateUrl: awsCertificate,
   },
   {
     id: 'toefl-itp',
@@ -24,6 +31,7 @@ export const certifications = [
       en: 'Institutional English proficiency assessment with a TOEFL ITP score of 567.',
     },
     details: { pt: '567 pontos', en: '567 points' },
+    certificateUrl: talkenCertificate,
   },
   {
     id: 'english-language-studies',
@@ -42,5 +50,6 @@ export const certifications = [
       pt: '4 semanas · 20 horas/semana · Canadian Language Benchmark 5',
       en: '4 weeks · 20 hours/week · Canadian Language Benchmark 5',
     },
+    certificateUrl: sprottShawCertificate,
   },
 ]

@@ -6,6 +6,7 @@
   "certifications_title": "Certifications",
   "certifications_intro": "Training and assessments that complement my professional experience.",
   "certifications_view_credential": "View credential",
+  "certifications_view_certificate": "View certificate",
   "hero_subtitle": "Computer Science Student | Software Development, Automation, Data & Cloud Computing",
   "resume_download_button": "Download Resume",
   "contact_title": "Get in Touch",
@@ -71,6 +72,7 @@
   "nav_perfil": "Profile",
   "nav_experiencia": "Experience",
   "profile_title": "Profile",
+  "profile_photo_alt": "Felipe Boaretto profile photo",
   "profile_skills_title": "Technical skills",
   "experience_title": "Professional Experience",
   "profile_paragraphs": [

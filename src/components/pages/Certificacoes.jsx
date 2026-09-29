@@ -43,15 +43,19 @@ export default function Certificacoes() {
                 ].filter(Boolean).join(' · ')}
               </p>
             )}
-            {certification.credentialUrl && (
-              <a
-                className="certificacao-link"
-                href={certification.credentialUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('certifications_view_credential')}
-              </a>
+            {(certification.credentialUrl || certification.certificateUrl) && (
+              <div className="certificacao-links">
+                {certification.credentialUrl && (
+                  <a className="certificacao-link" href={certification.credentialUrl} target="_blank" rel="noopener noreferrer">
+                    {t('certifications_view_credential')}
+                  </a>
+                )}
+                {certification.certificateUrl && (
+                  <a className="certificacao-link" href={certification.certificateUrl} target="_blank" rel="noopener noreferrer">
+                    {t('certifications_view_certificate')}
+                  </a>
+                )}
+              </div>
             )}
           </article>
         ))}
