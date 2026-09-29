@@ -1,4 +1,4 @@
-.contato-container { max-width: 960px; margin-inline: auto; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: start; gap: clamp(2rem, 5vw, 4rem); }
+.contato-container { max-width: clamp(960px, 56vw, 1120px); margin-inline: auto; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: start; gap: clamp(2rem, 5vw, 4rem); }
 .contato-intro p { max-width: 38ch; color: var(--text-secondary); }
 .contato-form { min-width: 0; }
 .form-group { margin-bottom: 1.25rem; }

@@ -21,9 +21,9 @@
   --radius-sm: 8px;
   --radius: 14px;
   --radius-lg: 20px;
-  --content-width: 1160px;
-  --gutter: clamp(1.25rem, 4vw, 3rem);
-  --section-space: clamp(3.5rem, 7vw, 6rem);
+  --content-width: clamp(1160px, 72vw, 1440px);
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+  --section-space: clamp(3.5rem, 7vw, 7rem);
   --font-heading: 'Poppins', sans-serif;
   --font-body: 'Source Sans 3', sans-serif;
 }
@@ -48,7 +48,7 @@
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
-body { margin: 0; background: var(--bg); color: var(--text); font: 1.0625rem/1.65 var(--font-body); transition: background-color 180ms ease, color 180ms ease; }
+body { margin: 0; background: var(--bg); color: var(--text); font: clamp(1.0625rem, 0.96rem + 0.12vw, 1.1875rem)/1.65 var(--font-body); transition: background-color 180ms ease, color 180ms ease; }
 button, input, textarea { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 a { color: var(--accent); text-underline-offset: 0.25em; }
@@ -57,7 +57,7 @@ button:disabled { cursor: not-allowed; opacity: 0.55; }
 img { max-width: 100%; }
 h1, h2, h3 { font-family: var(--font-heading); color: var(--text); line-height: 1.25; overflow-wrap: anywhere; }
 h1 { font-size: clamp(2.5rem, 5.5vw, 4rem); font-weight: 700; letter-spacing: -0.045em; }
-h2 { font-size: clamp(1.75rem, 3vw, 2.4rem); font-weight: 600; letter-spacing: -0.035em; margin: 0 0 1rem; }
+h2 { font-size: clamp(1.75rem, 1.7rem + 0.85vw, 2.75rem); font-weight: 600; letter-spacing: -0.035em; margin: 0 0 1rem; }
 h3 { font-size: 1.075rem; font-weight: 600; margin: 0 0 0.75rem; }
 p { margin: 0 0 1.25rem; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }

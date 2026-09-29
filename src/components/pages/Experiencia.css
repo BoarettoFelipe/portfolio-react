@@ -1,0 +1,20 @@
+.experience-container { max-width: clamp(980px, 58vw, 1160px); margin-inline: auto; }
+.experience-list { display: grid; gap: 2rem; }
+.experience-entry { min-width: 0; overflow-wrap: anywhere; padding-block: 1rem; }
+.experience-entry h3 { margin-bottom: 0.5rem; }
+.experience-entry p, .experience-entry li { color: var(--text-secondary); }
+.experience-entry .experience-role { color: var(--text); margin-bottom: 0.25rem; font-weight: 600; }
+.experience-program { margin-bottom: 0.5rem; }
+.experience-entry > p { max-width: 70ch; }
+.experience-entry + .experience-entry { border-top: 1px solid var(--border); }
+.experience-rotations { margin-block: 2rem; }
+.experience-rotations h4 { font-size: 1rem; margin-bottom: 1.25rem; }
+.experience-rotations > ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 2rem; }
+.experience-rotations li { border-left: 2px solid var(--border); padding-left: 1rem; min-width: 0; }
+.experience-rotations h5 { font-size: 1rem; color: var(--text); margin: 0 0 0.6rem; }
+.experience-rotations p { margin: 0; }
+.experience-highlights { font-size: 0.95rem; padding-left: 1.2rem; max-width: 75ch; }
+.experience-meta { font-size: 0.95rem; }
+.experience-technologies { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; padding: 0; list-style: none; font-size: 0.95rem; }
+.experience-technologies li { padding: 0.2rem 0.6rem; background: var(--surface-raised); border-radius: var(--radius-sm); }
+@media (max-width: 699px) { .experience-rotations > ul { grid-template-columns: 1fr; } }

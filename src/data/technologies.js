@@ -9,6 +9,14 @@ export const technologyGroups = [
 ];
 
 export const technologies = {
+  vba: { id: 'vba', label: 'VBA', group: 'languages' },
+  'sql-server': { id: 'sql-server', label: 'SQL Server', group: 'data' },
+  'power-bi': { id: 'power-bi', label: 'Power BI', group: 'data' },
+  'power-apps': { id: 'power-apps', label: 'Power Apps', group: 'ai' },
+  'power-automate': { id: 'power-automate', label: 'Power Automate', group: 'ai' },
+  excel: { id: 'excel', label: 'Excel', group: 'ai' },
+  sap: { id: 'sap', label: 'SAP', group: 'ai' },
+  'microsoft-365': { id: 'microsoft-365', label: 'Microsoft 365', group: 'ai' },
   wpf: { id: 'wpf', label: 'WPF', group: 'desktop' },
   sqlite: { id: 'sqlite', label: 'SQLite', group: 'data' },
   dapper: { id: 'dapper', label: 'Dapper', group: 'data' },

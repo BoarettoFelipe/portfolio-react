@@ -1,10 +1,25 @@
-.language-switcher, .theme-switcher { position: relative; display: inline-block; }
-.dropdown-button, .theme-button { display: flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0.5rem 0.65rem; font-size: 0.9rem; font-weight: 600; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--text-secondary); }
-.dropdown-button:hover, .theme-button:hover { background: var(--hover); color: var(--text); }
-.arrow-icon { width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); margin: -3px 2px 0; }
-.arrow-icon.open { transform: rotate(225deg); margin-top: 3px; }
-.dropdown-menu, .theme-dropdown-menu { position: absolute; top: calc(100% + 0.4rem); right: 0; min-width: 80px; padding: 0.35rem; background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-sm); box-shadow: var(--shadow); z-index: 2; }
-.dropdown-item, .theme-dropdown-item { display: block; width: 100%; min-height: 44px; padding: 0.5rem 0.75rem; border: 0; border-radius: 5px; background: transparent; color: var(--text-secondary); text-align: left; white-space: nowrap; }
-.dropdown-item:hover, .theme-dropdown-item:hover { background: var(--hover); color: var(--text); }
-.theme-dropdown-item.active { color: var(--accent); }
-.mobile-menu .dropdown-menu, .mobile-menu .theme-dropdown-menu { top: auto; bottom: calc(100% + 0.4rem); }
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.language-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  min-width: 58px;
+  min-height: 44px;
+  padding: 0.35rem 0.4rem;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.language-option:hover { background: var(--hover); color: var(--text); }
+.language-option[aria-pressed='true'] { color: var(--text); background: var(--hover); }
+.language-flag { flex: none; width: 18px; height: 12px; border-radius: 2px; }

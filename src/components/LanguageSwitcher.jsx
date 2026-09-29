@@ -1,74 +1,54 @@
-import { useState, useEffect, useRef, useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import './LanguageSwitcher.css';
 
-const LanguageSwitcher = () => {
-  const { t, i18n } = useTranslation();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
-  const triggerRef = useRef(null);
-  const menuId = useId();
-
-  const languages = {
-    pt: 'PT',
-    en: 'EN',
-  };
-
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-    setIsDropdownOpen(false);
-    triggerRef.current?.focus();
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+function Flag({ language }) {
+  if (language === 'pt') {
+    return (
+      <svg aria-hidden="true" className="language-flag" viewBox="0 0 24 16">
+        <rect width="24" height="16" rx="2" fill="#229E45" />
+        <path d="m12 2 9 6-9 6-9-6Z" fill="#F8D447" />
+        <circle cx="12" cy="8" r="3.1" fill="#274A91" />
+        <path d="M9 7.5c2-.5 4.2 0 6 1" fill="none" stroke="#fff" strokeWidth=".7" />
+      </svg>
+    );
+  }
 
   return (
-    <div className="language-switcher" ref={dropdownRef} onKeyDown={(event) => {
-      if (event.key === 'Escape' && isDropdownOpen) {
-        event.preventDefault();
-        event.stopPropagation();
-        setIsDropdownOpen(false);
-        triggerRef.current?.focus();
-      }
-    }}>
-      <button
-        type="button" ref={triggerRef} aria-expanded={isDropdownOpen} aria-controls={menuId} aria-label={t('language_label')} className="dropdown-button"
-        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-      >
-        {languages[i18n.language]}
-        <span className={`arrow-icon ${isDropdownOpen ? 'open' : ''}`}></span>
-      </button>
+    <svg aria-hidden="true" className="language-flag" viewBox="0 0 24 16">
+      <rect width="24" height="16" rx="2" fill="#fff" />
+      <path d="M0 1h24M0 3.5h24M0 6h24M0 8.5h24M0 11h24M0 13.5h24" stroke="#C83F4B" strokeWidth="1.25" />
+      <path d="M0 0h10v8H0Z" fill="#28447B" />
+      <path d="M2 2h1m2 0h1m2 0h1M2 4h1m2 0h1m2 0h1M2 6h1m2 0h1m2 0h1" stroke="#fff" strokeWidth=".8" />
+    </svg>
+  );
+}
 
-      {isDropdownOpen && (
-        <div id={menuId} className="dropdown-menu">
-          {Object.keys(languages).map((lng) => {
-            if (lng !== i18n.language) {
-              return (
-                <button
-                  type="button" key={lng}
-                  className="dropdown-item"
-                  onClick={() => changeLanguage(lng)}
-                >
-                  {languages[lng]}
-                </button>
-              );
-            }
-            return null;
-          })}
-        </div>
-      )}
+function LanguageSwitcher() {
+  const { t, i18n } = useTranslation();
+  const activeLanguage = i18n.resolvedLanguage?.startsWith('en') ? 'en' : 'pt';
+
+  const changeLanguage = (language) => {
+    localStorage.setItem('language', language);
+    i18n.changeLanguage(language);
+  };
+
+  return (
+    <div className="language-switcher" role="group" aria-label={t('language_label')}>
+      {['pt', 'en'].map((language) => (
+        <button
+          key={language}
+          type="button"
+          className="language-option"
+          aria-label={t(language === 'pt' ? 'language_portuguese' : 'language_english')}
+          aria-pressed={activeLanguage === language}
+          onClick={() => changeLanguage(language)}
+        >
+          <Flag language={language} />
+          <span>{language.toUpperCase()}</span>
+        </button>
+      ))}
     </div>
   );
-};
+}
 
 export default LanguageSwitcher;

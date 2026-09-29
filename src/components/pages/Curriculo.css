@@ -1,6 +1,0 @@
-.curriculo-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(200px, 0.75fr); gap: 3rem; align-items: center; max-width: 860px; margin-inline: auto; }
-.curriculo-copy p { max-width: 42ch; color: var(--text-secondary); }
-.curriculo-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
-.curriculo-viewer { display: block; max-width: 280px; width: 100%; margin: 0 auto; padding: 0.75rem; border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
-.pdf-preview-image { display: block; width: 100%; height: auto; border-radius: 5px; }
-@media (max-width: 699px) { .curriculo-card { grid-template-columns: 1fr; gap: 2rem; } .curriculo-viewer { max-width: 230px; margin-left: 0; } }

@@ -1,4 +1,5 @@
-#inicio { position: relative; isolation: isolate; }
+#inicio { position: relative; isolation: isolate; background: var(--bg); }
+#perfil { background: var(--bg); }
 .full-page-section { padding: var(--section-space) var(--gutter); }
 .section-content-container { width: 100%; max-width: var(--content-width); margin-inline: auto; }
 #projetos, #contato { background: var(--bg-secondary); }

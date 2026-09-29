@@ -1,8 +1,9 @@
-.hero-container { min-height: min(780px, 100svh); padding: 9rem var(--gutter) 5rem; display: flex; align-items: center; justify-content: center; text-align: center; }
-.hero-main-content { width: 100%; max-width: 800px; }
-.hero-name { margin: 0 0 1.5rem; opacity: 1; transition: opacity 140ms ease 140ms; }
-.hero-name.transferred { opacity: 0; transition-delay: 0ms; }
-.hero-main-content > p { max-width: 570px; margin: 0 auto; color: var(--text-secondary); font-size: clamp(1.1rem, 2vw, 1.3rem); text-wrap: balance; }
+.hero-container { min-height: min(100svh, 1080px); padding: clamp(7rem, 10vh, 10rem) var(--gutter) clamp(3rem, 6vh, 5rem); display: flex; align-items: center; justify-content: center; text-align: center; }
+.hero-main-content { width: 100%; max-width: clamp(800px, 55vw, 1020px); }
+.hero-name { margin: 0 0 1.5rem; font-size: clamp(2.5rem, 0.75rem + 3.8vw, 4.75rem); opacity: 1; transform: translateY(0); transition: opacity 320ms ease, transform 320ms ease; }
+.hero-name.transferred { opacity: 0; transform: translateY(-12px); }
+.hero-main-content > p { max-width: clamp(570px, 40vw, 710px); margin: 0 auto; color: var(--text-secondary); font-size: clamp(1.1rem, 0.5rem + 1vw, 1.5rem); text-wrap: balance; }
+.hero-actions .btn { font-size: clamp(1rem, 0.7rem + 0.3vw, 1.125rem); }
 .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin: 2rem 0 1.5rem; }
 .hero-links { display: flex; justify-content: center; gap: 0.5rem; }
 .social-link-wrapper { position: relative; }
@@ -11,4 +12,5 @@
 .tooltip { position: absolute; bottom: calc(100% + 0.5rem); left: 50%; transform: translateX(-50%); padding: 0.4rem 0.6rem; border-radius: var(--radius-sm); background: var(--surface-raised); color: var(--text); font-size: 0.8rem; max-width: 210px; width: max-content; overflow-wrap: anywhere; opacity: 0; visibility: hidden; pointer-events: none; box-shadow: var(--shadow); }
 .social-link-wrapper:last-child .tooltip { left: auto; right: 0; transform: none; }
 .social-link-wrapper:hover .tooltip, .social-link-wrapper:focus-within .tooltip { visibility: visible; opacity: 1; }
-@media (max-width: 600px) { .hero-container { min-height: 650px; min-height: min(700px, 100svh); padding-top: 8rem; padding-bottom: 4rem; } }
+@media (max-width: 600px) { .hero-container { min-height: 100svh; padding-top: 7rem; padding-bottom: 3rem; } }
+@media (prefers-reduced-motion: reduce) { .hero-name { transition: none; } .hero-name.transferred { transform: none; } }

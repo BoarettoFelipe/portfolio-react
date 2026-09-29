@@ -14,11 +14,13 @@ const resources = {
   },
 };
 
+const savedLanguage = localStorage.getItem('language');
+
 i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'pt', 
+    lng: ['pt', 'en'].includes(savedLanguage) ? savedLanguage : 'pt',
     fallbackLng: 'pt', 
     interpolation: {
       escapeValue: false,
