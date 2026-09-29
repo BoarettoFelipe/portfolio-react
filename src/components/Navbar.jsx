@@ -5,7 +5,7 @@ import LanguageSwitcher from './LanguageSwitcher';
 import ThemeSwitcher from './ThemeSwitcher';
 import './Navbar.css';
 
-const sections = ['perfil', 'experiencia', 'projetos', 'contato'];
+const sections = ['perfil', 'experiencia', 'projetos', 'certificacoes', 'contato'];
 
 function Navbar({ changeTheme, currentTheme, nameInHeader, headerRef }) {
   const { t } = useTranslation();

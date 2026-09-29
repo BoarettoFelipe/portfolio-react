@@ -1,0 +1,77 @@
+.certificacoes-container {
+  text-align: center;
+}
+
+.certificacoes-intro {
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  color: var(--text-secondary);
+}
+
+.certificacoes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 1.25rem;
+  text-align: left;
+}
+
+.certificacao-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.certificacao-image {
+  width: auto;
+  max-width: 100%;
+  height: 56px;
+  margin-bottom: 1rem;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.certificacao-heading h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
+.certificacao-issuer,
+.certificacao-date,
+.certificacao-details {
+  color: var(--text-secondary);
+}
+
+.certificacao-issuer,
+.certificacao-date {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.certificacao-description {
+  margin: 1.25rem 0 0.75rem;
+  line-height: 1.6;
+}
+
+.certificacao-details {
+  margin: 0 0 1.25rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.certificacao-link {
+  align-self: flex-start;
+  margin-top: auto;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.certificacao-link:hover,
+.certificacao-link:focus-visible {
+  text-decoration: underline;
+}

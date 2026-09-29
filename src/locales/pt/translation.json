@@ -1,6 +1,10 @@
 {
   "nav_projetos": "Projetos",
+  "nav_certificacoes": "Certificações",
   "nav_contato": "Contato",
+  "certifications_title": "Certificações",
+  "certifications_intro": "Formações e avaliações que complementam minha experiência profissional.",
+  "certifications_view_credential": "Ver credencial",
   "hero_subtitle": "Estudante de Ciência da Computação | Desenvolvimento de Software, Automação, Dados e Cloud Computing",
   "resume_download_button": "Baixar Currículo",
   "contact_title": "Entre em Contato",

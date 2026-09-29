@@ -5,6 +5,7 @@ import Inicio from './components/pages/Inicio';
 import Perfil from './components/pages/Perfil';
 import Experiencia from './components/pages/Experiencia';
 import Projetos from './components/pages/Projetos';
+import Certificacoes from './components/pages/Certificacoes';
 import Contato from './components/pages/Contato';
 import { useTranslation } from 'react-i18next';
 import './App.css';
@@ -70,6 +71,11 @@ function App() {
         <section id="projetos" tabIndex={-1} className="full-page-section">
           <div className="section-content-container">
             <Projetos />
+          </div>
+        </section>
+        <section id="certificacoes" tabIndex={-1} className="full-page-section">
+          <div className="section-content-container">
+            <Certificacoes />
           </div>
         </section>
         <section id="contato" tabIndex={-1} className="full-page-section">
