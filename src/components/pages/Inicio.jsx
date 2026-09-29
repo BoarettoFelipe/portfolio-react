@@ -12,8 +12,13 @@ function Inicio({ nameRef, nameInHeader }) {
         <h1 ref={nameRef} className={`hero-name${nameInHeader ? ' transferred' : ''}`}>{profile.name}</h1>
         <p>{t('hero_subtitle')}</p>
         <div className="hero-actions">
-          <a className="btn btn-primary" href="#projetos">{t('hero_projects')} <span aria-hidden="true">↗</span></a>
-          <a className="btn btn-secondary" href={resume.url} download={resume.filename}>{t('resume_download_button')}</a>
+          <a className="btn btn-primary hero-resume-button" href={resume.url} download={resume.filename}>
+            {t('resume_download_button')}
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3" />
+            </svg>
+          </a>
+          <a className="btn btn-secondary" href="#projetos">{t('hero_projects')} <span aria-hidden="true">↗</span></a>
         </div>
         <div className="hero-links">
           {profile.linkedin && (

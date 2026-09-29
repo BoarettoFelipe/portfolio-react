@@ -4,6 +4,7 @@
 .hero-name.transferred { opacity: 0; transform: translateY(-12px); }
 .hero-main-content > p { max-width: clamp(570px, 40vw, 710px); margin: 0 auto; color: var(--text-secondary); font-size: clamp(1.1rem, 0.5rem + 1vw, 1.5rem); text-wrap: balance; }
 .hero-actions .btn { font-size: clamp(1rem, 0.7rem + 0.3vw, 1.125rem); }
+.hero-resume-button:focus-visible { outline-color: var(--focus); outline-width: 3px; }
 .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin: 2rem 0 1.5rem; }
 .hero-links { display: flex; justify-content: center; gap: 0.5rem; }
 .social-link-wrapper { position: relative; }
