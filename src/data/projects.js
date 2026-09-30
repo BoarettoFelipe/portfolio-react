@@ -1,6 +1,8 @@
 import attendanceImage from '../assets/projects/home-office-attendance-tracker/dashboard.png';
 import smartExpenseImage from '../assets/projects/smart-expense/dashboard.png';
 import transportaxImage from '../assets/projects/transportax/dashboard.png';
+import portfolioCmsImage from '../assets/projects/professional-portfolio-cms/home.png';
+import haskellInventoryImage from '../assets/projects/haskell-inventory-system/inventory.png';
 
 /**
  * @typedef {{ pt: string, en: string }} LocalizedText
@@ -106,5 +108,32 @@ export const projects = [
     githubUrl: 'https://github.com/BoarettoFelipe/home-office-attendance-tracker',
     status: 'portfolio',
     featured: true
+  },
+  {
+    id: 'professional-portfolio-cms',
+    title: { pt: 'Portfolio Profissional com CMS', en: 'Professional Portfolio with CMS' },
+    description: {
+      pt: 'Portfólio profissional desenvolvido em React com integração ao Decap CMS, permitindo que uma usuária não técnica atualize conteúdos como perfil, experiências, publicações e currículo por uma interface administrativa, sem editar diretamente o código.',
+      en: 'Professional portfolio built with React and Decap CMS, allowing a non-technical user to update content such as profile information, experience, publications and resume through an admin interface without editing the source code.'
+    },
+    technologies: ['react', 'javascript', 'vite', 'decap-cms', 'i18next', 'emailjs'],
+    image: portfolioCmsImage,
+    githubUrl: 'https://github.com/BoarettoFelipe/portifolio-namorada',
+    liveUrl: 'https://brendawollinger.vercel.app',
+    status: 'portfolio',
+    featured: false
+  },
+  {
+    id: 'haskell-inventory-system',
+    title: { pt: 'Sistema de Inventário em Haskell', en: 'Haskell Inventory System' },
+    description: {
+      pt: 'Sistema de inventário em Haskell com regras de negócio funcionais, persistência em arquivos e log de auditoria. O projeto separa lógica pura de operações de IO e utiliza Data.Map e Either para modelar o estado e os resultados das operações.',
+      en: 'Inventory system built in Haskell with functional business rules, file persistence and audit logging. The project separates pure logic from IO operations and uses Data.Map and Either to model state and operation results.'
+    },
+    technologies: ['haskell'],
+    image: haskellInventoryImage,
+    githubUrl: 'https://github.com/BoarettoFelipe/ProjetoHaskell',
+    status: 'portfolio',
+    featured: false
   }
 ];

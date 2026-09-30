@@ -1,17 +1,36 @@
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getTechnology } from '../data/technologies';
 import { getLocalizedText } from '../utils/projects';
 import './ProjectCard.css';
 
-function ProjectCard({ project }) {
+function ProjectCard({ project, featured = false, onOpen }) {
   const { t, i18n } = useTranslation();
   const language = i18n.resolvedLanguage || i18n.language;
   const title = getLocalizedText(project.title, language);
+  const pointer = useRef(null);
 
   const liveUrl = project.liveUrl || project.demoUrl;
 
   return (
-    <div className="project-card">
+    <article className={`project-card${featured ? ' project-card--featured' : ''}${onOpen ? ' project-card--openable' : ''}`}
+      onPointerDown={(event) => {
+        if (event.pointerType === 'mouse' && event.button === 0) pointer.current = { x: event.clientX, y: event.clientY, moved: false };
+      }}
+      onPointerMove={(event) => {
+        if (pointer.current && Math.hypot(event.clientX - pointer.current.x, event.clientY - pointer.current.y) > 6) pointer.current.moved = true;
+      }}
+      onPointerCancel={() => { pointer.current = null; }}
+      onClick={(event) => {
+        const moved = pointer.current?.moved;
+        pointer.current = null;
+        if (!onOpen || moved || event.target.closest('a, button') || window.getSelection()?.toString().trim()) return;
+        onOpen(project, event.currentTarget.querySelector('.project-card-open-control'));
+      }}>
+      {onOpen && (
+        <button type="button" className="project-card-open-control" aria-label={t('project_open_details', { title })}
+          onClick={(event) => onOpen(project, event.currentTarget)} />
+      )}
       {project.image ? (
         <img src={project.image} alt={t('project_image_alt', { title })} className="project-image" loading="lazy" />
       ) : (
@@ -43,7 +62,7 @@ function ProjectCard({ project }) {
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 

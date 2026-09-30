@@ -11,6 +11,7 @@ const FlowingBackground = () => {
     const ctx = canvas.getContext('2d');
     let animationFrameId;
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let canvasVisible = !('IntersectionObserver' in window);
 
     const resizeCanvas = () => {
       canvas.width = canvas.clientWidth;
@@ -86,9 +87,16 @@ const FlowingBackground = () => {
     };
     const syncMotion = () => {
       cancelAnimationFrame(animationFrameId);
-      if (!motion.matches && !document.hidden) animate();
+      if (!motion.matches && !document.hidden && canvasVisible) animate();
       else ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
+    const visibility = 'IntersectionObserver' in window
+      ? new IntersectionObserver(([entry]) => {
+        canvasVisible = entry.isIntersecting;
+        syncMotion();
+      })
+      : null;
+    visibility?.observe(canvas);
     syncMotion();
     motion.addEventListener('change', syncMotion);
     document.addEventListener('visibilitychange', syncMotion);
@@ -96,6 +104,7 @@ const FlowingBackground = () => {
     return () => {
       motion.removeEventListener('change', syncMotion);
       document.removeEventListener('visibilitychange', syncMotion);
+      visibility?.disconnect();
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animationFrameId);

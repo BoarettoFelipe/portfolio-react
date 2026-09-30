@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ProjectCard from '../ProjectCard';
 import ProjectCarousel from '../ProjectCarousel';
 import ProjectFilters from '../ProjectFilters';
+import ProjectDetails from '../ProjectDetails';
 import { projects } from '../../data/projects';
 import { getProjectTechnologyGroups, filterProjectsByTechnology } from '../../utils/projects';
 import './Projetos.css';
@@ -14,6 +15,9 @@ function Projetos() {
   const { t } = useTranslation();
   const [selectedTechnologies, setSelectedTechnologies] = useState([]);
   const [mode, setMode] = useState('featured');
+  const [activeProject, setActiveProject] = useState(null);
+  const detailsTrigger = useRef(null);
+  const detailsOrigin = useRef(null);
   // Persiste a pausa mesmo quando o carrossel é desmontado pelo catálogo.
   const [playing, setPlaying] = useState(() => !window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const hasFilters = selectedTechnologies.length > 0;
@@ -25,6 +29,12 @@ function Projetos() {
       ? selected.filter((technologyId) => technologyId !== id)
       : [...selected, id]);
     setMode('catalog');
+  };
+
+  const openProject = (project, trigger) => {
+    detailsTrigger.current = trigger;
+    detailsOrigin.current = trigger?.closest('.project-card')?.getBoundingClientRect() ?? null;
+    setActiveProject(project);
   };
 
   return (
@@ -47,12 +57,13 @@ function Projetos() {
           <p className="projects-empty" role="status">{t(projects.length === 0 ? 'projects_empty' : 'projects_no_results')}</p>
         ) : (
           <div className="projects-grid">
-            {visibleProjects.map((project) => <ProjectCard key={project.id} project={project} />)}
+            {visibleProjects.map((project) => <ProjectCard key={project.id} project={project} onOpen={openProject} />)}
           </div>
         )
       ) : (
-        <ProjectCarousel projects={featuredProjects} playing={playing} onPlayingChange={setPlaying} />
+        <ProjectCarousel projects={featuredProjects} playing={playing} onPlayingChange={setPlaying} onOpenProject={openProject} />
       )}
+      <ProjectDetails project={activeProject} trigger={detailsTrigger.current} origin={detailsOrigin.current} onClose={() => setActiveProject(null)} />
     </div>
   );
 }
