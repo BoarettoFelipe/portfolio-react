@@ -8,7 +8,16 @@
 .projects-toolbar > .project-filters > .project-filter:hover { background: var(--hover); color: var(--text); }
 .projects-toolbar .project-filter[aria-pressed='true'] { background: var(--accent); color: var(--accent-ink); }
 .projects-toolbar > .projects-mode-button { color: var(--accent); }
-.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr)); gap: clamp(1rem, 1.5vw, 1.5rem); grid-auto-rows: 1fr; }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: clamp(1rem, 1.5vw, 1.5rem); grid-auto-rows: 1fr; }
+.projects-grid--enter { animation: projects-page-enter 180ms ease-out both; }
+@keyframes projects-page-enter { from { opacity: 0.45; transform: translateX(10px); } to { opacity: 1; transform: none; } }
+.projects-pagination { display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 1.5rem; }
+.projects-pagination-button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--text-muted); font-size: 1.55rem; cursor: pointer; }
+.projects-pagination-button:hover:not(:disabled) { background: var(--hover); color: var(--text); }
+.projects-pagination-button:disabled { opacity: 0.4; cursor: default; }
+.projects-pagination-button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.projects-pagination-status { min-width: 4rem; margin: 0; color: var(--text-secondary); text-align: center; font-size: 0.9rem; }
+@media (prefers-reduced-motion: reduce) { .projects-grid--enter { animation: none; } }
 .projects-empty, .projects-result-count { color: var(--text-secondary); text-align: center; }
 .projects-result-count { margin: -0.75rem 0 1.5rem; font-size: 0.88rem; }
 @media (max-width: 600px) { .projects-toolbar { gap: 0.5rem; } .projects-toolbar > .project-filter, .projects-toolbar > .project-filters > .project-filter { padding-inline: 0.85rem; } }

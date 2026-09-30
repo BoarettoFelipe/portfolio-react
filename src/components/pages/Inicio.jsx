@@ -18,7 +18,11 @@ function Inicio({ nameRef, nameInHeader }) {
               <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3" />
             </svg>
           </a>
-          <a className="btn btn-secondary" href="#projetos">{t('hero_projects')} <span aria-hidden="true">↗</span></a>
+          <a className="btn btn-secondary" href="#projetos">{t('hero_projects')}
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 19 19 5M8 5h11v11" />
+            </svg>
+          </a>
         </div>
         <div className="hero-links">
           {profile.linkedin && (

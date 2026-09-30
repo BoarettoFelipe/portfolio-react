@@ -72,7 +72,7 @@ function Navbar({ changeTheme, currentTheme, nameInHeader, headerRef }) {
 
   return (
     <>
-      <nav ref={headerRef} className={`navbar ${show || isMobileMenuOpen ? 'visible' : 'hidden'}${scrolled ? ' scrolled' : ''}`} aria-label={t('menu_title')}>
+      <nav ref={headerRef} className={`navbar ${show || isMobileMenuOpen ? 'visible' : 'hidden'}${scrolled ? ' scrolled' : ''}${nameInHeader ? ' on-content' : ''}`} aria-label={t('menu_title')}>
         <ul className="navbar-links">
           {sections.map((id) => <li key={id}><a href={`#${id}`}>{t(`nav_${id}`)}</a></li>)}
         </ul>

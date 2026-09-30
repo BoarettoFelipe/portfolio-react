@@ -1,4 +1,4 @@
-.hero-container { min-height: min(100svh, 1080px); padding: clamp(7rem, 10vh, 10rem) var(--gutter) clamp(3rem, 6vh, 5rem); display: flex; align-items: center; justify-content: center; text-align: center; }
+.hero-container { position: relative; z-index: 1; min-height: min(100svh, 1080px); padding: clamp(7rem, 10vh, 10rem) var(--gutter) clamp(3rem, 6vh, 5rem); display: flex; align-items: center; justify-content: center; text-align: center; }
 .hero-main-content { width: 100%; max-width: clamp(800px, 55vw, 1020px); }
 .hero-name { margin: 0 0 1.5rem; font-size: clamp(2.5rem, 0.75rem + 3.8vw, 4.75rem); opacity: 1; transform: translateY(0); transition: opacity 320ms ease, transform 320ms ease; }
 .hero-name.transferred { opacity: 0; transform: translateY(-12px); }
