@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import ProjectCard from './ProjectCard';
 import './ProjectCarousel.css';
 
-function ProjectCarousel({ projects, playing, onPlayingChange }) {
+function ProjectCarousel({ projects, playing, onPlayingChange, onOpenProject }) {
   const { t } = useTranslation();
   const [index, setIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(() => window.innerWidth >= 1100 ? 3 : window.innerWidth >= 700 ? 2 : 1);
@@ -70,9 +70,8 @@ function ProjectCarousel({ projects, playing, onPlayingChange }) {
         <button type="button" className="project-carousel-arrow previous" disabled={!canRotate} aria-label={t('projects_previous')} onClick={() => navigate(index - 1)}><span aria-hidden="true">‹</span></button>
       <div className="project-carousel-window" data-phase={transition.phase} style={{ '--visible-projects': Math.max(1, Math.min(visibleCount, count)), '--slide-direction': transition.direction }}
         onFocusCapture={() => onPlayingChange(false)}
-        onDragStart={(event) => event.preventDefault()}
         onPointerDown={(event) => {
-          if (!event.isPrimary || event.button !== 0) return;
+          if (!event.isPrimary || event.pointerType !== 'touch') return;
           dragged.current = false;
           gesture.current = { x: event.clientX, y: event.clientY };
         }}
@@ -93,7 +92,7 @@ function ProjectCarousel({ projects, playing, onPlayingChange }) {
           if (canRotate && Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) navigate(index + (dx < 0 ? 1 : -1));
           gesture.current = null;
         }}
-        onPointerCancel={() => { gesture.current = null; }}
+        onPointerCancel={() => { gesture.current = null; dragged.current = false; }}
         onClickCapture={(event) => {
           if (dragged.current) {
             event.preventDefault();
@@ -107,7 +106,7 @@ function ProjectCarousel({ projects, playing, onPlayingChange }) {
           const visible = offset < visibleCount;
           return (
             <div key={project.id} className="project-carousel-slide" style={{ gridColumn: visible ? offset + 1 : 1, order: offset }} aria-hidden={!visible} inert={!visible} data-visible={visible}>
-              <ProjectCard project={project} />
+              <ProjectCard project={project} featured onOpen={onOpenProject} />
             </div>
           );
         })}

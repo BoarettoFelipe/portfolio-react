@@ -1,6 +1,13 @@
 .perfil-container { display: grid; grid-template-columns: minmax(180px, 0.75fr) minmax(0, 1.5fr); gap: clamp(2rem, 6vw, 5rem); align-items: center; max-width: clamp(980px, 58vw, 1160px); margin-inline: auto; }
 .perfil-imagem { max-width: clamp(280px, 17vw, 340px); width: 100%; margin-inline: auto; }
-.perfil-imagem img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center; border-radius: var(--radius-lg); }
+.perfil-imagem img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center; border-radius: var(--radius-lg); transition: transform 350ms ease, box-shadow 350ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .perfil-imagem:hover img { transform: translateY(-5px) scale(1.025) rotate(-0.5deg); box-shadow: 0 16px 32px #00000024; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .perfil-imagem img { transition: none; }
+  .perfil-imagem:hover img { transform: none; }
+}
 .perfil-texto p { max-width: 65ch; color: var(--text-secondary); }
 .perfil-skills { grid-column: 1 / -1; min-width: 0; }
 .perfil-skills h3 { font-size: 1.1rem; margin-bottom: 1.5rem; }
