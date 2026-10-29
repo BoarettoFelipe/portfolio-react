@@ -2,9 +2,26 @@ import awsBadge from '../assets/certifications/AWS_Academy_Graduate/aws-academy-
 import awsCertificate from '../assets/certifications/AWS_Academy_Graduate/AWS_Academy_Graduate___Cloud_Foundations___Training_Badge_Badge20260530-31-3w3gqa.pdf';
 import talkenCertificate from '../assets/certifications/Talken/Talken.pdf';
 import sprottShawCertificate from '../assets/certifications/Sprott Shaw/Sprott Shaw.pdf';
+import githubFoundationsCertificate from '../assets/certifications/GitHub_Foundations/GithubFoundations.pdf';
+import githubFoundationsBadge from '../assets/certifications/GitHub_Foundations/github-foundations-badge.png';
+import toeflBadge from '../assets/certifications/Talken/toefl-itp-badge.png';
+import sprottShawBadge from '../assets/certifications/Sprott Shaw/sprott-shaw-badge.png';
 
 // Textos específicos das credenciais ficam junto dos dados; a interface usa i18n.
 export const certifications = [
+  {
+    id: 'github-foundations',
+    title: { pt: 'GitHub Foundations (GH-900)', en: 'GitHub Foundations (GH-900)' },
+    issuer: 'GitHub',
+    date: { pt: 'Outubro de 2026', en: 'October 2026' },
+    description: {
+      pt: 'Certificação em fundamentos do GitHub, incluindo colaboração, repositórios, controle de versão e fluxos de trabalho.',
+      en: 'Certification in GitHub fundamentals, including collaboration, repositories, version control, and workflows.',
+    },
+    image: githubFoundationsBadge,
+    credentialUrl: 'https://learn.microsoft.com/api/credentials/share/en-us/FelipeBoaretto-2349/9E023C561056A46E?sharingId=770005CF4592E9B5',
+    certificateUrl: githubFoundationsCertificate,
+  },
   {
     id: 'aws-cloud-foundations',
     title: {
@@ -31,6 +48,7 @@ export const certifications = [
       en: 'Institutional English proficiency assessment with a TOEFL ITP score of 567.',
     },
     details: { pt: '567 pontos', en: '567 points' },
+    image: toeflBadge,
     certificateUrl: talkenCertificate,
   },
   {
@@ -50,6 +68,7 @@ export const certifications = [
       pt: '4 semanas · 20 horas/semana · Canadian Language Benchmark 5',
       en: '4 weeks · 20 hours/week · Canadian Language Benchmark 5',
     },
+    image: sprottShawBadge,
     certificateUrl: sprottShawCertificate,
   },
 ]
